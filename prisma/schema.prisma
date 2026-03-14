@@ -9,17 +9,17 @@ datasource db {
 
 //Модель юзера
 model User {
-  id             String           @id @default(uuid())
-  createdAt      DateTime         @default(now()) @map("created_at")
-  updatedAt      DateTime         @updatedAt @map("updated_at")
-  email          String           @unique
+  id             String            @id @default(uuid())
+  createdAt      DateTime          @default(now()) @map("created_at")
+  updatedAt      DateTime          @updatedAt @map("updated_at")
+  email          String            @unique
   name           String?
   password       String
-  breakInterval  Int              @default(5) @map("break_interval")
-  intervalsCount Int              @default(3) @map("interval_count")
-  workInteval    Int              @default(30) @map("work_inteval")
+  breakInterval  Int               @default(5) @map("break_interval")
+  intervalsCount Int               @default(3) @map("interval_count")
+  workInterval   Int               @default(30) @map("work_interval")
   task           Task[]
-  session        PromodoSession[]
+  session        PomodoroSession[]
   timeBlock      Timeblock[]
 }
 
@@ -43,25 +43,25 @@ enum Priority {
 }
 
 //Модель сессии
-model PromodoSession {
-  id          String         @id @default(uuid())
-  createdAt   DateTime       @default(now()) @map("created_at")
-  updatedAt   DateTime       @updatedAt @map("updated_at")
-  isComplited Boolean        @map("is_complited")
-  user        User?          @relation(fields: [userId], references: [id])
-  userId      String?        @map("user_id")
-  rounds      PromodoRound[]
+model PomodoroSession {
+  id          String          @id @default(uuid())
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+  isComplited Boolean         @map("is_complited")
+  user        User?           @relation(fields: [userId], references: [id])
+  userId      String?         @map("user_id")
+  rounds      PomodoroRound[]
 }
 
 //Модель Раунда
-model PromodoRound {
-  id               String         @id @default(uuid())
-  createdAt        DateTime       @default(now()) @map("created_at")
-  updatedAt        DateTime       @updatedAt @map("updated_at")
-  allMinutes       Int            @map("all_minutes")
-  completed        Boolean
-  promodoSessionId String         @map("promodo_session_id")
-  promodoSession   PromodoSession @relation(fields: [promodoSessionId], references: [id])
+model PomodoroRound {
+  id                String          @id @default(uuid())
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+  allMinutes        Int             @map("all_minutes")
+  completed         Boolean
+  pomodoroSessionId String          @map("pomodoro_session_id")
+  pomodoroSession   PomodoroSession @relation(fields: [pomodoroSessionId], references: [id])
 }
 
 //Модель временного блока
