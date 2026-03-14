@@ -41,7 +41,10 @@ model Task {
 }
 
 enum Priority {
-  Priority
+  low
+  medium
+  high
+  highest
 }
 
 //Модель сессии
