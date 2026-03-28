@@ -8,9 +8,6 @@ import { PrismaPg } from '@prisma/adapter-pg'
 import { Pool } from 'pg'
 import { PrismaClient } from 'prisma/generated/client'
 
-
-
-
 @Injectable()
 export class PrismaService
 	extends PrismaClient
@@ -19,11 +16,10 @@ export class PrismaService
 	private readonly logger = new Logger(PrismaService.name)
 
 	public constructor() {
-
 		const pool = new Pool({
-			connectionString: process.env.DATABASE_URL,
+			connectionString: process.env.DATABASE_URL
 		})
-		
+
 		//@ts-ignore
 		const adapter = new PrismaPg(pool)
 
