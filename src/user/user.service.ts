@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { hash } from 'argon2'
+import { startOfDay, subDays } from 'date-fns'
 import { PrismaService } from 'src/prisma/prisma.service'
 
 import { AuthDto, UserDto } from './user.dto'
@@ -35,6 +36,7 @@ export class UserService {
 		if (dto.password) {
 			dto.password = await hash(dto.password)
 		}
+
 		return this.prisma.user.update({
 			where: { id },
 			data: dto,
@@ -45,5 +47,54 @@ export class UserService {
 		})
 	}
 
-	// async getProfile() {}
+	async getProfile(id: string) {
+		const profile = await this.getById(id)
+
+		if (!profile) {
+			throw new NotFoundException(`User with id ${id} not found`)
+		}
+
+		const totalTasks = profile.task.length
+
+		const completedTasks = await this.prisma.task.count({
+			where: {
+				userId: id,
+				isCompleted: true
+			}
+		})
+
+		const todayStart = startOfDay(new Date())
+		const weekStart = startOfDay(subDays(new Date(), 7))
+
+		const todayTasks = await this.prisma.task.count({
+			where: {
+				userId: id,
+				createdAt: {
+					gte: todayStart.toISOString()
+				}
+			}
+		})
+
+		const weekTasks = await this.prisma.task.count({
+			where: {
+				userId: id,
+				createdAt: {
+					gte: weekStart.toISOString()
+				}
+			}
+		})
+
+		//eslint-disable-next-line @typescript-eslint/no-unused-vars
+		const { password, ...rest } = profile
+
+		return {
+			user: rest,
+			statistics: [
+				{ label: 'Total', value: totalTasks },
+				{ label: 'Completed ', value: completedTasks },
+				{ label: 'Today tasks', value: todayTasks },
+				{ label: 'Week tasks', value: weekTasks }
+			]
+		}
+	}
 }

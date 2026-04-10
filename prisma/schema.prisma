@@ -26,14 +26,14 @@ model User {
 
 //Модель задач
 model Task {
-  id         String   @id @default(uuid())
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
-  name       String?
-  isComleted Boolean  @map("is_completed")
-  userId     String   @map("user_id")
-  user       User     @relation(fields: [userId], references: [id])
-  priority   Priority
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  name        String?
+  isCompleted Boolean  @map("is_completed")
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id])
+  priority    Priority
 }
 
 enum Priority {
