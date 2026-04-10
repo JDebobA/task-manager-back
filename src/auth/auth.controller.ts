@@ -18,6 +18,7 @@ import { AuthDto } from './dto/auth.dto'
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
+	// Авторизует пользователя, кладет refresh token в cookie и возвращает access token с данными пользователя.
 	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Post('login')
@@ -28,6 +29,7 @@ export class AuthController {
 		return response
 	}
 
+	// Регистрирует нового пользователя, сразу выдает токены и сохраняет refresh token в cookie.
 	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Post('register')
@@ -41,6 +43,7 @@ export class AuthController {
 		return response
 	}
 
+	// Обновляет access/refresh токены по refresh token из cookie.
 	@HttpCode(200)
 	@Post('login/access-token')
 	async getNewToken(
@@ -64,6 +67,7 @@ export class AuthController {
 		return response
 	}
 
+	// Выход из аккаунта: удаляет refresh token из cookie.
 	@HttpCode(200)
 	@Post('logout')
 	async logout(@Res({ passthrough: true }) res: Response) {

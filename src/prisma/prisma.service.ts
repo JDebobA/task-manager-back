@@ -16,6 +16,7 @@ export class PrismaService
 	private readonly logger = new Logger(PrismaService.name)
 
 	public constructor() {
+		// Создает пул подключений PostgreSQL и передает его Prisma через адаптер.
 		const pool = new Pool({
 			connectionString: process.env.DATABASE_URL
 		})
@@ -26,6 +27,7 @@ export class PrismaService
 		super({ adapter })
 	}
 
+	// При старте модуля подключается к БД и логирует время подключения.
 	public async onModuleInit() {
 		const start = Date.now()
 
@@ -46,6 +48,7 @@ export class PrismaService
 		}
 	}
 
+	// При остановке модуля корректно закрывает соединение с БД.
 	public async onModuleDestroy() {
 		this.logger.log('Отключения от базы данных...')
 

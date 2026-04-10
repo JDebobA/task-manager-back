@@ -17,12 +17,14 @@ import { UserService } from './user.service'
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 
+	// Возвращает профиль текущего авторизованного пользователя.
 	@Get()
 	@Auth()
 	async profile(@CurrentUser('id') id: string) {
 		return this.userService.getProfile(id)
 	}
 
+	// Обновляет данные профиля текущего пользователя.
 	@UsePipes(new ValidationPipe())
 	@HttpCode(200)
 	@Put()

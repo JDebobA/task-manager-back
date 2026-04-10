@@ -21,6 +21,7 @@ export class AuthService {
 		private userService: UserService
 	) {}
 
+	// Проверяет email/пароль пользователя и выдает новую пару токенов.
 	async login(dto: AuthDto) {
 		const user = await this.validateUser(dto)
 
@@ -33,6 +34,7 @@ export class AuthService {
 		}
 	}
 
+	// Создает нового пользователя и сразу возвращает токены для входа.
 	async register(dto: AuthDto) {
 		const oldUser = await this.userService.getByEmail(dto.email)
 		if (oldUser) throw new BadRequestException(`User already exists`)
@@ -48,6 +50,7 @@ export class AuthService {
 		}
 	}
 
+	// Проверяет refresh token, находит пользователя и выдает обновленные токены.
 	async getNewTokens(refreshToken: string) {
 		const result = await this.jwt.verifyAsync(refreshToken)
 		if (!result) throw new UnauthorizedException('Invalid refresh token')
@@ -67,6 +70,7 @@ export class AuthService {
 		}
 	}
 
+	// Генерирует access и refresh токены по идентификатору пользователя.
 	private issueTokens(userId: string) {
 		const data = { id: userId }
 
@@ -81,6 +85,7 @@ export class AuthService {
 		return { accessToken, refreshToken }
 	}
 
+	// Валидирует пользователя: проверяет наличие аккаунта и корректность пароля.
 	private async validateUser(dto: AuthDto) {
 		const user = await this.userService.getByEmail(dto.email)
 
@@ -93,6 +98,7 @@ export class AuthService {
 		return user
 	}
 
+	// Сохраняет refresh token в httpOnly cookie для безопасного обновления сессии.
 	addRefreshTokenToResponse(res: Response, refreshToken: string) {
 		const expiresIn = new Date()
 		expiresIn.setDate(expiresIn.getDate() + this.EXPIRE_DAY_REFRESH_TOKEN)
@@ -106,6 +112,7 @@ export class AuthService {
 		})
 	}
 
+	// Сбрасывает refresh token в cookie, чтобы завершить пользовательскую сессию.
 	removeRefreshTokenFromResponse(res: Response) {
 		res.cookie(this.REFRESH_TOKEN_NAME, '', {
 			httpOnly: true,

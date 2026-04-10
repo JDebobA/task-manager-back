@@ -9,6 +9,7 @@ import { AuthDto, UserDto } from './user.dto'
 export class UserService {
 	constructor(private readonly prisma: PrismaService) {}
 
+	// Ищет пользователя по id вместе с его задачами.
 	async getById(id: string) {
 		return this.prisma.user.findUnique({
 			where: { id },
@@ -16,12 +17,14 @@ export class UserService {
 		})
 	}
 
+	// Ищет пользователя по email для проверки уникальности и авторизации.
 	async getByEmail(email: string) {
 		return this.prisma.user.findUnique({
 			where: { email }
 		})
 	}
 
+	// Создает нового пользователя и хеширует пароль перед сохранением.
 	async create(dto: AuthDto) {
 		return this.prisma.user.create({
 			data: {
@@ -32,6 +35,7 @@ export class UserService {
 		})
 	}
 
+	// Обновляет профиль пользователя; пароль дополнительно хешируется при изменении.
 	async update(id: string, dto: UserDto) {
 		if (dto.password) {
 			dto.password = await hash(dto.password)
@@ -47,6 +51,7 @@ export class UserService {
 		})
 	}
 
+	// Собирает публичный профиль пользователя и статистику по задачам.
 	async getProfile(id: string) {
 		const profile = await this.getById(id)
 

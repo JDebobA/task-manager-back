@@ -11,6 +11,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		private configService: ConfigService,
 		private userService: UserService
 	) {
+		// Настраивает стратегию JWT: берет токен из Bearer заголовка и проверяет подпись секретом.
 		super({
 			jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
 			ignoreExpiration: true,
@@ -18,6 +19,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 		})
 	}
 
+	// По id из payload достает актуального пользователя для req.user.
 	async validate({ id }: { id: string }) {
 		return this.userService.getById(id)
 	}
