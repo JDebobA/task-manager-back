@@ -27,15 +27,15 @@ export type AggregateUser = {
 }
 
 export type UserAvgAggregateOutputType = {
-  breakInterval: number | null
-  intervalsCount: number | null
   workInterval: number | null
+  breakInterval: number | null
+  intervalCount: number | null
 }
 
 export type UserSumAggregateOutputType = {
-  breakInterval: number | null
-  intervalsCount: number | null
   workInterval: number | null
+  breakInterval: number | null
+  intervalCount: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -45,9 +45,9 @@ export type UserMinAggregateOutputType = {
   email: string | null
   name: string | null
   password: string | null
-  breakInterval: number | null
-  intervalsCount: number | null
   workInterval: number | null
+  breakInterval: number | null
+  intervalCount: number | null
 }
 
 export type UserMaxAggregateOutputType = {
@@ -57,9 +57,9 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   name: string | null
   password: string | null
-  breakInterval: number | null
-  intervalsCount: number | null
   workInterval: number | null
+  breakInterval: number | null
+  intervalCount: number | null
 }
 
 export type UserCountAggregateOutputType = {
@@ -69,23 +69,23 @@ export type UserCountAggregateOutputType = {
   email: number
   name: number
   password: number
-  breakInterval: number
-  intervalsCount: number
   workInterval: number
+  breakInterval: number
+  intervalCount: number
   _all: number
 }
 
 
 export type UserAvgAggregateInputType = {
-  breakInterval?: true
-  intervalsCount?: true
   workInterval?: true
+  breakInterval?: true
+  intervalCount?: true
 }
 
 export type UserSumAggregateInputType = {
-  breakInterval?: true
-  intervalsCount?: true
   workInterval?: true
+  breakInterval?: true
+  intervalCount?: true
 }
 
 export type UserMinAggregateInputType = {
@@ -95,9 +95,9 @@ export type UserMinAggregateInputType = {
   email?: true
   name?: true
   password?: true
-  breakInterval?: true
-  intervalsCount?: true
   workInterval?: true
+  breakInterval?: true
+  intervalCount?: true
 }
 
 export type UserMaxAggregateInputType = {
@@ -107,9 +107,9 @@ export type UserMaxAggregateInputType = {
   email?: true
   name?: true
   password?: true
-  breakInterval?: true
-  intervalsCount?: true
   workInterval?: true
+  breakInterval?: true
+  intervalCount?: true
 }
 
 export type UserCountAggregateInputType = {
@@ -119,9 +119,9 @@ export type UserCountAggregateInputType = {
   email?: true
   name?: true
   password?: true
-  breakInterval?: true
-  intervalsCount?: true
   workInterval?: true
+  breakInterval?: true
+  intervalCount?: true
   _all?: true
 }
 
@@ -218,9 +218,9 @@ export type UserGroupByOutputType = {
   email: string
   name: string | null
   password: string
-  breakInterval: number
-  intervalsCount: number
-  workInterval: number
+  workInterval: number | null
+  breakInterval: number | null
+  intervalCount: number | null
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -253,12 +253,13 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
-  breakInterval?: Prisma.IntFilter<"User"> | number
-  intervalsCount?: Prisma.IntFilter<"User"> | number
-  workInterval?: Prisma.IntFilter<"User"> | number
-  task?: Prisma.TaskListRelationFilter
-  session?: Prisma.PomodoroSessionListRelationFilter
-  timeBlock?: Prisma.TimeblockListRelationFilter
+  workInterval?: Prisma.IntNullableFilter<"User"> | number | null
+  breakInterval?: Prisma.IntNullableFilter<"User"> | number | null
+  intervalCount?: Prisma.IntNullableFilter<"User"> | number | null
+  PomodoroRound?: Prisma.PomodoroRoundListRelationFilter
+  promodorosessions?: Prisma.PomodoroSessionListRelationFilter
+  tasks?: Prisma.TaskListRelationFilter
+  timeblocks?: Prisma.TimeBlockListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -268,12 +269,13 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
-  breakInterval?: Prisma.SortOrder
-  intervalsCount?: Prisma.SortOrder
-  workInterval?: Prisma.SortOrder
-  task?: Prisma.TaskOrderByRelationAggregateInput
-  session?: Prisma.PomodoroSessionOrderByRelationAggregateInput
-  timeBlock?: Prisma.TimeblockOrderByRelationAggregateInput
+  workInterval?: Prisma.SortOrderInput | Prisma.SortOrder
+  breakInterval?: Prisma.SortOrderInput | Prisma.SortOrder
+  intervalCount?: Prisma.SortOrderInput | Prisma.SortOrder
+  PomodoroRound?: Prisma.PomodoroRoundOrderByRelationAggregateInput
+  promodorosessions?: Prisma.PomodoroSessionOrderByRelationAggregateInput
+  tasks?: Prisma.TaskOrderByRelationAggregateInput
+  timeblocks?: Prisma.TimeBlockOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -286,12 +288,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   name?: Prisma.StringNullableFilter<"User"> | string | null
   password?: Prisma.StringFilter<"User"> | string
-  breakInterval?: Prisma.IntFilter<"User"> | number
-  intervalsCount?: Prisma.IntFilter<"User"> | number
-  workInterval?: Prisma.IntFilter<"User"> | number
-  task?: Prisma.TaskListRelationFilter
-  session?: Prisma.PomodoroSessionListRelationFilter
-  timeBlock?: Prisma.TimeblockListRelationFilter
+  workInterval?: Prisma.IntNullableFilter<"User"> | number | null
+  breakInterval?: Prisma.IntNullableFilter<"User"> | number | null
+  intervalCount?: Prisma.IntNullableFilter<"User"> | number | null
+  PomodoroRound?: Prisma.PomodoroRoundListRelationFilter
+  promodorosessions?: Prisma.PomodoroSessionListRelationFilter
+  tasks?: Prisma.TaskListRelationFilter
+  timeblocks?: Prisma.TimeBlockListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -301,9 +304,9 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrderInput | Prisma.SortOrder
   password?: Prisma.SortOrder
-  breakInterval?: Prisma.SortOrder
-  intervalsCount?: Prisma.SortOrder
-  workInterval?: Prisma.SortOrder
+  workInterval?: Prisma.SortOrderInput | Prisma.SortOrder
+  breakInterval?: Prisma.SortOrderInput | Prisma.SortOrder
+  intervalCount?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -321,9 +324,9 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   name?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
-  breakInterval?: Prisma.IntWithAggregatesFilter<"User"> | number
-  intervalsCount?: Prisma.IntWithAggregatesFilter<"User"> | number
-  workInterval?: Prisma.IntWithAggregatesFilter<"User"> | number
+  workInterval?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  breakInterval?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
+  intervalCount?: Prisma.IntNullableWithAggregatesFilter<"User"> | number | null
 }
 
 export type UserCreateInput = {
@@ -333,12 +336,13 @@ export type UserCreateInput = {
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  task?: Prisma.TaskCreateNestedManyWithoutUserInput
-  session?: Prisma.PomodoroSessionCreateNestedManyWithoutUserInput
-  timeBlock?: Prisma.TimeblockCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundCreateNestedManyWithoutUserInput
+  promodorosessions?: Prisma.PomodoroSessionCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -348,12 +352,13 @@ export type UserUncheckedCreateInput = {
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  session?: Prisma.PomodoroSessionUncheckedCreateNestedManyWithoutUserInput
-  timeBlock?: Prisma.TimeblockUncheckedCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedCreateNestedManyWithoutUserInput
+  promodorosessions?: Prisma.PomodoroSessionUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -363,12 +368,13 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  session?: Prisma.PomodoroSessionUpdateManyWithoutUserNestedInput
-  timeBlock?: Prisma.TimeblockUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUpdateManyWithoutUserNestedInput
+  promodorosessions?: Prisma.PomodoroSessionUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -378,12 +384,13 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  session?: Prisma.PomodoroSessionUncheckedUpdateManyWithoutUserNestedInput
-  timeBlock?: Prisma.TimeblockUncheckedUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedUpdateManyWithoutUserNestedInput
+  promodorosessions?: Prisma.PomodoroSessionUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -393,9 +400,9 @@ export type UserCreateManyInput = {
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
 }
 
 export type UserUpdateManyMutationInput = {
@@ -405,9 +412,9 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type UserUncheckedUpdateManyInput = {
@@ -417,9 +424,9 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type UserCountOrderByAggregateInput = {
@@ -429,15 +436,15 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  breakInterval?: Prisma.SortOrder
-  intervalsCount?: Prisma.SortOrder
   workInterval?: Prisma.SortOrder
+  breakInterval?: Prisma.SortOrder
+  intervalCount?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
-  breakInterval?: Prisma.SortOrder
-  intervalsCount?: Prisma.SortOrder
   workInterval?: Prisma.SortOrder
+  breakInterval?: Prisma.SortOrder
+  intervalCount?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -447,9 +454,9 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  breakInterval?: Prisma.SortOrder
-  intervalsCount?: Prisma.SortOrder
   workInterval?: Prisma.SortOrder
+  breakInterval?: Prisma.SortOrder
+  intervalCount?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
@@ -459,15 +466,15 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   name?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  breakInterval?: Prisma.SortOrder
-  intervalsCount?: Prisma.SortOrder
   workInterval?: Prisma.SortOrder
+  breakInterval?: Prisma.SortOrder
+  intervalCount?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
-  breakInterval?: Prisma.SortOrder
-  intervalsCount?: Prisma.SortOrder
   workInterval?: Prisma.SortOrder
+  breakInterval?: Prisma.SortOrder
+  intervalCount?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -492,272 +499,374 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
 }
 
-export type UserCreateNestedOneWithoutTaskInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaskInput
+export type UserCreateNestedOneWithoutTasksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTasksInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutTaskNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTaskInput
-  upsert?: Prisma.UserUpsertWithoutTaskInput
+export type UserUpdateOneRequiredWithoutTasksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTasksInput
+  upsert?: Prisma.UserUpsertWithoutTasksInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTaskInput, Prisma.UserUpdateWithoutTaskInput>, Prisma.UserUncheckedUpdateWithoutTaskInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTasksInput, Prisma.UserUpdateWithoutTasksInput>, Prisma.UserUncheckedUpdateWithoutTasksInput>
 }
 
-export type UserCreateNestedOneWithoutSessionInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionInput
+export type UserCreateNestedOneWithoutTimeblocksInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTimeblocksInput, Prisma.UserUncheckedCreateWithoutTimeblocksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTimeblocksInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutSessionNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSessionInput
-  upsert?: Prisma.UserUpsertWithoutSessionInput
+export type UserUpdateOneRequiredWithoutTimeblocksNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTimeblocksInput, Prisma.UserUncheckedCreateWithoutTimeblocksInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTimeblocksInput
+  upsert?: Prisma.UserUpsertWithoutTimeblocksInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTimeblocksInput, Prisma.UserUpdateWithoutTimeblocksInput>, Prisma.UserUncheckedUpdateWithoutTimeblocksInput>
+}
+
+export type UserCreateNestedOneWithoutPromodorosessionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPromodorosessionsInput, Prisma.UserUncheckedCreateWithoutPromodorosessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPromodorosessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPromodorosessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPromodorosessionsInput, Prisma.UserUncheckedCreateWithoutPromodorosessionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPromodorosessionsInput
+  upsert?: Prisma.UserUpsertWithoutPromodorosessionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPromodorosessionsInput, Prisma.UserUpdateWithoutPromodorosessionsInput>, Prisma.UserUncheckedUpdateWithoutPromodorosessionsInput>
+}
+
+export type UserCreateNestedOneWithoutPomodoroRoundInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPomodoroRoundInput, Prisma.UserUncheckedCreateWithoutPomodoroRoundInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPomodoroRoundInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutPomodoroRoundNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPomodoroRoundInput, Prisma.UserUncheckedCreateWithoutPomodoroRoundInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPomodoroRoundInput
+  upsert?: Prisma.UserUpsertWithoutPomodoroRoundInput
   disconnect?: Prisma.UserWhereInput | boolean
   delete?: Prisma.UserWhereInput | boolean
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSessionInput, Prisma.UserUpdateWithoutSessionInput>, Prisma.UserUncheckedUpdateWithoutSessionInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPomodoroRoundInput, Prisma.UserUpdateWithoutPomodoroRoundInput>, Prisma.UserUncheckedUpdateWithoutPomodoroRoundInput>
 }
 
-export type UserCreateNestedOneWithoutTimeBlockInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTimeBlockInput, Prisma.UserUncheckedCreateWithoutTimeBlockInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTimeBlockInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutTimeBlockNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTimeBlockInput, Prisma.UserUncheckedCreateWithoutTimeBlockInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTimeBlockInput
-  upsert?: Prisma.UserUpsertWithoutTimeBlockInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTimeBlockInput, Prisma.UserUpdateWithoutTimeBlockInput>, Prisma.UserUncheckedUpdateWithoutTimeBlockInput>
-}
-
-export type UserCreateWithoutTaskInput = {
+export type UserCreateWithoutTasksInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  session?: Prisma.PomodoroSessionCreateNestedManyWithoutUserInput
-  timeBlock?: Prisma.TimeblockCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundCreateNestedManyWithoutUserInput
+  promodorosessions?: Prisma.PomodoroSessionCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutTaskInput = {
+export type UserUncheckedCreateWithoutTasksInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  session?: Prisma.PomodoroSessionUncheckedCreateNestedManyWithoutUserInput
-  timeBlock?: Prisma.TimeblockUncheckedCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedCreateNestedManyWithoutUserInput
+  promodorosessions?: Prisma.PomodoroSessionUncheckedCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutTaskInput = {
+export type UserCreateOrConnectWithoutTasksInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
 }
 
-export type UserUpsertWithoutTaskInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTaskInput, Prisma.UserUncheckedUpdateWithoutTaskInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTaskInput, Prisma.UserUncheckedCreateWithoutTaskInput>
+export type UserUpsertWithoutTasksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTasksInput, Prisma.UserUncheckedUpdateWithoutTasksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTasksInput, Prisma.UserUncheckedCreateWithoutTasksInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutTaskInput = {
+export type UserUpdateToOneWithWhereWithoutTasksInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTaskInput, Prisma.UserUncheckedUpdateWithoutTaskInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTasksInput, Prisma.UserUncheckedUpdateWithoutTasksInput>
 }
 
-export type UserUpdateWithoutTaskInput = {
+export type UserUpdateWithoutTasksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  session?: Prisma.PomodoroSessionUpdateManyWithoutUserNestedInput
-  timeBlock?: Prisma.TimeblockUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUpdateManyWithoutUserNestedInput
+  promodorosessions?: Prisma.PomodoroSessionUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutTaskInput = {
+export type UserUncheckedUpdateWithoutTasksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  session?: Prisma.PomodoroSessionUncheckedUpdateManyWithoutUserNestedInput
-  timeBlock?: Prisma.TimeblockUncheckedUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedUpdateManyWithoutUserNestedInput
+  promodorosessions?: Prisma.PomodoroSessionUncheckedUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutSessionInput = {
+export type UserCreateWithoutTimeblocksInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  task?: Prisma.TaskCreateNestedManyWithoutUserInput
-  timeBlock?: Prisma.TimeblockCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundCreateNestedManyWithoutUserInput
+  promodorosessions?: Prisma.PomodoroSessionCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutSessionInput = {
+export type UserUncheckedCreateWithoutTimeblocksInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  timeBlock?: Prisma.TimeblockUncheckedCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedCreateNestedManyWithoutUserInput
+  promodorosessions?: Prisma.PomodoroSessionUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutSessionInput = {
+export type UserCreateOrConnectWithoutTimeblocksInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTimeblocksInput, Prisma.UserUncheckedCreateWithoutTimeblocksInput>
 }
 
-export type UserUpsertWithoutSessionInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutSessionInput, Prisma.UserUncheckedUpdateWithoutSessionInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutSessionInput, Prisma.UserUncheckedCreateWithoutSessionInput>
+export type UserUpsertWithoutTimeblocksInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTimeblocksInput, Prisma.UserUncheckedUpdateWithoutTimeblocksInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTimeblocksInput, Prisma.UserUncheckedCreateWithoutTimeblocksInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutSessionInput = {
+export type UserUpdateToOneWithWhereWithoutTimeblocksInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutSessionInput, Prisma.UserUncheckedUpdateWithoutSessionInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTimeblocksInput, Prisma.UserUncheckedUpdateWithoutTimeblocksInput>
 }
 
-export type UserUpdateWithoutSessionInput = {
+export type UserUpdateWithoutTimeblocksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  timeBlock?: Prisma.TimeblockUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUpdateManyWithoutUserNestedInput
+  promodorosessions?: Prisma.PomodoroSessionUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutSessionInput = {
+export type UserUncheckedUpdateWithoutTimeblocksInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  timeBlock?: Prisma.TimeblockUncheckedUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedUpdateManyWithoutUserNestedInput
+  promodorosessions?: Prisma.PomodoroSessionUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutTimeBlockInput = {
+export type UserCreateWithoutPromodorosessionsInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  task?: Prisma.TaskCreateNestedManyWithoutUserInput
-  session?: Prisma.PomodoroSessionCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutTimeBlockInput = {
+export type UserUncheckedCreateWithoutPromodorosessionsInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   email: string
   name?: string | null
   password: string
-  breakInterval?: number
-  intervalsCount?: number
-  workInterval?: number
-  task?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
-  session?: Prisma.PomodoroSessionUncheckedCreateNestedManyWithoutUserInput
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutTimeBlockInput = {
+export type UserCreateOrConnectWithoutPromodorosessionsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTimeBlockInput, Prisma.UserUncheckedCreateWithoutTimeBlockInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPromodorosessionsInput, Prisma.UserUncheckedCreateWithoutPromodorosessionsInput>
 }
 
-export type UserUpsertWithoutTimeBlockInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTimeBlockInput, Prisma.UserUncheckedUpdateWithoutTimeBlockInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTimeBlockInput, Prisma.UserUncheckedCreateWithoutTimeBlockInput>
+export type UserUpsertWithoutPromodorosessionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPromodorosessionsInput, Prisma.UserUncheckedUpdateWithoutPromodorosessionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPromodorosessionsInput, Prisma.UserUncheckedCreateWithoutPromodorosessionsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutTimeBlockInput = {
+export type UserUpdateToOneWithWhereWithoutPromodorosessionsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTimeBlockInput, Prisma.UserUncheckedUpdateWithoutTimeBlockInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPromodorosessionsInput, Prisma.UserUncheckedUpdateWithoutPromodorosessionsInput>
 }
 
-export type UserUpdateWithoutTimeBlockInput = {
+export type UserUpdateWithoutPromodorosessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  task?: Prisma.TaskUpdateManyWithoutUserNestedInput
-  session?: Prisma.PomodoroSessionUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutTimeBlockInput = {
+export type UserUncheckedUpdateWithoutPromodorosessionsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  breakInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  intervalsCount?: Prisma.IntFieldUpdateOperationsInput | number
-  workInterval?: Prisma.IntFieldUpdateOperationsInput | number
-  task?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
-  session?: Prisma.PomodoroSessionUncheckedUpdateManyWithoutUserNestedInput
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  PomodoroRound?: Prisma.PomodoroRoundUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutPomodoroRoundInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  name?: string | null
+  password: string
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  promodorosessions?: Prisma.PomodoroSessionCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPomodoroRoundInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  email: string
+  name?: string | null
+  password: string
+  workInterval?: number | null
+  breakInterval?: number | null
+  intervalCount?: number | null
+  promodorosessions?: Prisma.PomodoroSessionUncheckedCreateNestedManyWithoutUserInput
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  timeblocks?: Prisma.TimeBlockUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPomodoroRoundInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPomodoroRoundInput, Prisma.UserUncheckedCreateWithoutPomodoroRoundInput>
+}
+
+export type UserUpsertWithoutPomodoroRoundInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPomodoroRoundInput, Prisma.UserUncheckedUpdateWithoutPomodoroRoundInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPomodoroRoundInput, Prisma.UserUncheckedCreateWithoutPomodoroRoundInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPomodoroRoundInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPomodoroRoundInput, Prisma.UserUncheckedUpdateWithoutPomodoroRoundInput>
+}
+
+export type UserUpdateWithoutPomodoroRoundInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  promodorosessions?: Prisma.PomodoroSessionUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPomodoroRoundInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  workInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  breakInterval?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  intervalCount?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  promodorosessions?: Prisma.PomodoroSessionUncheckedUpdateManyWithoutUserNestedInput
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  timeblocks?: Prisma.TimeBlockUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -766,15 +875,17 @@ export type UserUncheckedUpdateWithoutTimeBlockInput = {
  */
 
 export type UserCountOutputType = {
-  task: number
-  session: number
-  timeBlock: number
+  PomodoroRound: number
+  promodorosessions: number
+  tasks: number
+  timeblocks: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  task?: boolean | UserCountOutputTypeCountTaskArgs
-  session?: boolean | UserCountOutputTypeCountSessionArgs
-  timeBlock?: boolean | UserCountOutputTypeCountTimeBlockArgs
+  PomodoroRound?: boolean | UserCountOutputTypeCountPomodoroRoundArgs
+  promodorosessions?: boolean | UserCountOutputTypeCountPromodorosessionsArgs
+  tasks?: boolean | UserCountOutputTypeCountTasksArgs
+  timeblocks?: boolean | UserCountOutputTypeCountTimeblocksArgs
 }
 
 /**
@@ -790,22 +901,29 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountTaskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TaskWhereInput
+export type UserCountOutputTypeCountPomodoroRoundArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PomodoroRoundWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountSessionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeCountPromodorosessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.PomodoroSessionWhereInput
 }
 
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountTimeBlockArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TimeblockWhereInput
+export type UserCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TaskWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountTimeblocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TimeBlockWhereInput
 }
 
 
@@ -816,12 +934,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   name?: boolean
   password?: boolean
-  breakInterval?: boolean
-  intervalsCount?: boolean
   workInterval?: boolean
-  task?: boolean | Prisma.User$taskArgs<ExtArgs>
-  session?: boolean | Prisma.User$sessionArgs<ExtArgs>
-  timeBlock?: boolean | Prisma.User$timeBlockArgs<ExtArgs>
+  breakInterval?: boolean
+  intervalCount?: boolean
+  PomodoroRound?: boolean | Prisma.User$PomodoroRoundArgs<ExtArgs>
+  promodorosessions?: boolean | Prisma.User$promodorosessionsArgs<ExtArgs>
+  tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
+  timeblocks?: boolean | Prisma.User$timeblocksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -832,9 +951,9 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   name?: boolean
   password?: boolean
-  breakInterval?: boolean
-  intervalsCount?: boolean
   workInterval?: boolean
+  breakInterval?: boolean
+  intervalCount?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -844,9 +963,9 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   name?: boolean
   password?: boolean
-  breakInterval?: boolean
-  intervalsCount?: boolean
   workInterval?: boolean
+  breakInterval?: boolean
+  intervalCount?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
@@ -856,16 +975,17 @@ export type UserSelectScalar = {
   email?: boolean
   name?: boolean
   password?: boolean
-  breakInterval?: boolean
-  intervalsCount?: boolean
   workInterval?: boolean
+  breakInterval?: boolean
+  intervalCount?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "email" | "name" | "password" | "breakInterval" | "intervalsCount" | "workInterval", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "email" | "name" | "password" | "workInterval" | "breakInterval" | "intervalCount", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  task?: boolean | Prisma.User$taskArgs<ExtArgs>
-  session?: boolean | Prisma.User$sessionArgs<ExtArgs>
-  timeBlock?: boolean | Prisma.User$timeBlockArgs<ExtArgs>
+  PomodoroRound?: boolean | Prisma.User$PomodoroRoundArgs<ExtArgs>
+  promodorosessions?: boolean | Prisma.User$promodorosessionsArgs<ExtArgs>
+  tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
+  timeblocks?: boolean | Prisma.User$timeblocksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -874,9 +994,10 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    task: Prisma.$TaskPayload<ExtArgs>[]
-    session: Prisma.$PomodoroSessionPayload<ExtArgs>[]
-    timeBlock: Prisma.$TimeblockPayload<ExtArgs>[]
+    PomodoroRound: Prisma.$PomodoroRoundPayload<ExtArgs>[]
+    promodorosessions: Prisma.$PomodoroSessionPayload<ExtArgs>[]
+    tasks: Prisma.$TaskPayload<ExtArgs>[]
+    timeblocks: Prisma.$TimeBlockPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -885,9 +1006,9 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     name: string | null
     password: string
-    breakInterval: number
-    intervalsCount: number
-    workInterval: number
+    workInterval: number | null
+    breakInterval: number | null
+    intervalCount: number | null
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -1282,9 +1403,10 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  task<T extends Prisma.User$taskArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$taskArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  session<T extends Prisma.User$sessionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PomodoroSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  timeBlock<T extends Prisma.User$timeBlockArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$timeBlockArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  PomodoroRound<T extends Prisma.User$PomodoroRoundArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$PomodoroRoundArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PomodoroRoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  promodorosessions<T extends Prisma.User$promodorosessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$promodorosessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PomodoroSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  tasks<T extends Prisma.User$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  timeblocks<T extends Prisma.User$timeblocksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$timeblocksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1320,9 +1442,9 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly name: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
-  readonly breakInterval: Prisma.FieldRef<"User", 'Int'>
-  readonly intervalsCount: Prisma.FieldRef<"User", 'Int'>
   readonly workInterval: Prisma.FieldRef<"User", 'Int'>
+  readonly breakInterval: Prisma.FieldRef<"User", 'Int'>
+  readonly intervalCount: Prisma.FieldRef<"User", 'Int'>
 }
     
 
@@ -1716,33 +1838,33 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.task
+ * User.PomodoroRound
  */
-export type User$taskArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$PomodoroRoundArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Task
+   * Select specific fields to fetch from the PomodoroRound
    */
-  select?: Prisma.TaskSelect<ExtArgs> | null
+  select?: Prisma.PomodoroRoundSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Task
+   * Omit specific fields from the PomodoroRound
    */
-  omit?: Prisma.TaskOmit<ExtArgs> | null
+  omit?: Prisma.PomodoroRoundOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TaskInclude<ExtArgs> | null
-  where?: Prisma.TaskWhereInput
-  orderBy?: Prisma.TaskOrderByWithRelationInput | Prisma.TaskOrderByWithRelationInput[]
-  cursor?: Prisma.TaskWhereUniqueInput
+  include?: Prisma.PomodoroRoundInclude<ExtArgs> | null
+  where?: Prisma.PomodoroRoundWhereInput
+  orderBy?: Prisma.PomodoroRoundOrderByWithRelationInput | Prisma.PomodoroRoundOrderByWithRelationInput[]
+  cursor?: Prisma.PomodoroRoundWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
+  distinct?: Prisma.PomodoroRoundScalarFieldEnum | Prisma.PomodoroRoundScalarFieldEnum[]
 }
 
 /**
- * User.session
+ * User.promodorosessions
  */
-export type User$sessionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$promodorosessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the PomodoroSession
    */
@@ -1764,27 +1886,51 @@ export type User$sessionArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * User.timeBlock
+ * User.tasks
  */
-export type User$timeBlockArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the Task
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TaskSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the Task
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TaskOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
-  where?: Prisma.TimeblockWhereInput
-  orderBy?: Prisma.TimeblockOrderByWithRelationInput | Prisma.TimeblockOrderByWithRelationInput[]
-  cursor?: Prisma.TimeblockWhereUniqueInput
+  include?: Prisma.TaskInclude<ExtArgs> | null
+  where?: Prisma.TaskWhereInput
+  orderBy?: Prisma.TaskOrderByWithRelationInput | Prisma.TaskOrderByWithRelationInput[]
+  cursor?: Prisma.TaskWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.TimeblockScalarFieldEnum | Prisma.TimeblockScalarFieldEnum[]
+  distinct?: Prisma.TaskScalarFieldEnum | Prisma.TaskScalarFieldEnum[]
+}
+
+/**
+ * User.timeblocks
+ */
+export type User$timeblocksArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the TimeBlock
+   */
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the TimeBlock
+   */
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
+  where?: Prisma.TimeBlockWhereInput
+  orderBy?: Prisma.TimeBlockOrderByWithRelationInput | Prisma.TimeBlockOrderByWithRelationInput[]
+  cursor?: Prisma.TimeBlockWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TimeBlockScalarFieldEnum | Prisma.TimeBlockScalarFieldEnum[]
 }
 
 /**

@@ -10,7 +10,7 @@
  */
 export type * from './models/User.js'
 export type * from './models/Task.js'
+export type * from './models/TimeBlock.js'
 export type * from './models/PomodoroSession.js'
 export type * from './models/PomodoroRound.js'
-export type * from './models/Timeblock.js'
 export type * from './commonInputTypes.js'

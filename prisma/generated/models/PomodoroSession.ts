@@ -28,7 +28,7 @@ export type PomodoroSessionMinAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  isComplited: boolean | null
+  isCompleted: boolean | null
   userId: string | null
 }
 
@@ -36,7 +36,7 @@ export type PomodoroSessionMaxAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  isComplited: boolean | null
+  isCompleted: boolean | null
   userId: string | null
 }
 
@@ -44,7 +44,7 @@ export type PomodoroSessionCountAggregateOutputType = {
   id: number
   createdAt: number
   updatedAt: number
-  isComplited: number
+  isCompleted: number
   userId: number
   _all: number
 }
@@ -54,7 +54,7 @@ export type PomodoroSessionMinAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
-  isComplited?: true
+  isCompleted?: true
   userId?: true
 }
 
@@ -62,7 +62,7 @@ export type PomodoroSessionMaxAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
-  isComplited?: true
+  isCompleted?: true
   userId?: true
 }
 
@@ -70,7 +70,7 @@ export type PomodoroSessionCountAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
-  isComplited?: true
+  isCompleted?: true
   userId?: true
   _all?: true
 }
@@ -151,8 +151,8 @@ export type PomodoroSessionGroupByOutputType = {
   id: string
   createdAt: Date
   updatedAt: Date
-  isComplited: boolean
-  userId: string | null
+  isCompleted: boolean | null
+  userId: string
   _count: PomodoroSessionCountAggregateOutputType | null
   _min: PomodoroSessionMinAggregateOutputType | null
   _max: PomodoroSessionMaxAggregateOutputType | null
@@ -180,20 +180,20 @@ export type PomodoroSessionWhereInput = {
   id?: Prisma.StringFilter<"PomodoroSession"> | string
   createdAt?: Prisma.DateTimeFilter<"PomodoroSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PomodoroSession"> | Date | string
-  isComplited?: Prisma.BoolFilter<"PomodoroSession"> | boolean
-  userId?: Prisma.StringNullableFilter<"PomodoroSession"> | string | null
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  isCompleted?: Prisma.BoolNullableFilter<"PomodoroSession"> | boolean | null
+  userId?: Prisma.StringFilter<"PomodoroSession"> | string
   rounds?: Prisma.PomodoroRoundListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type PomodoroSessionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  isComplited?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
-  user?: Prisma.UserOrderByWithRelationInput
+  isCompleted?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
   rounds?: Prisma.PomodoroRoundOrderByRelationAggregateInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type PomodoroSessionWhereUniqueInput = Prisma.AtLeast<{
@@ -203,18 +203,18 @@ export type PomodoroSessionWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PomodoroSessionWhereInput | Prisma.PomodoroSessionWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"PomodoroSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PomodoroSession"> | Date | string
-  isComplited?: Prisma.BoolFilter<"PomodoroSession"> | boolean
-  userId?: Prisma.StringNullableFilter<"PomodoroSession"> | string | null
-  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
+  isCompleted?: Prisma.BoolNullableFilter<"PomodoroSession"> | boolean | null
+  userId?: Prisma.StringFilter<"PomodoroSession"> | string
   rounds?: Prisma.PomodoroRoundListRelationFilter
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type PomodoroSessionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  isComplited?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  isCompleted?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrder
   _count?: Prisma.PomodoroSessionCountOrderByAggregateInput
   _max?: Prisma.PomodoroSessionMaxOrderByAggregateInput
   _min?: Prisma.PomodoroSessionMinOrderByAggregateInput
@@ -227,25 +227,25 @@ export type PomodoroSessionScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"PomodoroSession"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PomodoroSession"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PomodoroSession"> | Date | string
-  isComplited?: Prisma.BoolWithAggregatesFilter<"PomodoroSession"> | boolean
-  userId?: Prisma.StringNullableWithAggregatesFilter<"PomodoroSession"> | string | null
+  isCompleted?: Prisma.BoolNullableWithAggregatesFilter<"PomodoroSession"> | boolean | null
+  userId?: Prisma.StringWithAggregatesFilter<"PomodoroSession"> | string
 }
 
 export type PomodoroSessionCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
-  user?: Prisma.UserCreateNestedOneWithoutSessionInput
+  isCompleted?: boolean | null
   rounds?: Prisma.PomodoroRoundCreateNestedManyWithoutPomodoroSessionInput
+  user: Prisma.UserCreateNestedOneWithoutPromodorosessionsInput
 }
 
 export type PomodoroSessionUncheckedCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
-  userId?: string | null
+  isCompleted?: boolean | null
+  userId: string
   rounds?: Prisma.PomodoroRoundUncheckedCreateNestedManyWithoutPomodoroSessionInput
 }
 
@@ -253,17 +253,17 @@ export type PomodoroSessionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  user?: Prisma.UserUpdateOneWithoutSessionNestedInput
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   rounds?: Prisma.PomodoroRoundUpdateManyWithoutPomodoroSessionNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutPromodorosessionsNestedInput
 }
 
 export type PomodoroSessionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
   rounds?: Prisma.PomodoroRoundUncheckedUpdateManyWithoutPomodoroSessionNestedInput
 }
 
@@ -271,23 +271,23 @@ export type PomodoroSessionCreateManyInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
-  userId?: string | null
+  isCompleted?: boolean | null
+  userId: string
 }
 
 export type PomodoroSessionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
 }
 
 export type PomodoroSessionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PomodoroSessionListRelationFilter = {
@@ -304,7 +304,7 @@ export type PomodoroSessionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  isComplited?: Prisma.SortOrder
+  isCompleted?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
@@ -312,7 +312,7 @@ export type PomodoroSessionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  isComplited?: Prisma.SortOrder
+  isCompleted?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
@@ -320,7 +320,7 @@ export type PomodoroSessionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  isComplited?: Prisma.SortOrder
+  isCompleted?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
@@ -389,7 +389,7 @@ export type PomodoroSessionCreateWithoutUserInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
+  isCompleted?: boolean | null
   rounds?: Prisma.PomodoroRoundCreateNestedManyWithoutPomodoroSessionInput
 }
 
@@ -397,7 +397,7 @@ export type PomodoroSessionUncheckedCreateWithoutUserInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
+  isCompleted?: boolean | null
   rounds?: Prisma.PomodoroRoundUncheckedCreateNestedManyWithoutPomodoroSessionInput
 }
 
@@ -434,24 +434,24 @@ export type PomodoroSessionScalarWhereInput = {
   id?: Prisma.StringFilter<"PomodoroSession"> | string
   createdAt?: Prisma.DateTimeFilter<"PomodoroSession"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PomodoroSession"> | Date | string
-  isComplited?: Prisma.BoolFilter<"PomodoroSession"> | boolean
-  userId?: Prisma.StringNullableFilter<"PomodoroSession"> | string | null
+  isCompleted?: Prisma.BoolNullableFilter<"PomodoroSession"> | boolean | null
+  userId?: Prisma.StringFilter<"PomodoroSession"> | string
 }
 
 export type PomodoroSessionCreateWithoutRoundsInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
-  user?: Prisma.UserCreateNestedOneWithoutSessionInput
+  isCompleted?: boolean | null
+  user: Prisma.UserCreateNestedOneWithoutPromodorosessionsInput
 }
 
 export type PomodoroSessionUncheckedCreateWithoutRoundsInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
-  userId?: string | null
+  isCompleted?: boolean | null
+  userId: string
 }
 
 export type PomodoroSessionCreateOrConnectWithoutRoundsInput = {
@@ -474,30 +474,30 @@ export type PomodoroSessionUpdateWithoutRoundsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  user?: Prisma.UserUpdateOneWithoutSessionNestedInput
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  user?: Prisma.UserUpdateOneRequiredWithoutPromodorosessionsNestedInput
 }
 
 export type PomodoroSessionUncheckedUpdateWithoutRoundsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PomodoroSessionCreateManyUserInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  isComplited: boolean
+  isCompleted?: boolean | null
 }
 
 export type PomodoroSessionUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   rounds?: Prisma.PomodoroRoundUpdateManyWithoutPomodoroSessionNestedInput
 }
 
@@ -505,7 +505,7 @@ export type PomodoroSessionUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
   rounds?: Prisma.PomodoroRoundUncheckedUpdateManyWithoutPomodoroSessionNestedInput
 }
 
@@ -513,7 +513,7 @@ export type PomodoroSessionUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  isComplited?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isCompleted?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
 }
 
 
@@ -551,10 +551,10 @@ export type PomodoroSessionSelect<ExtArgs extends runtime.Types.Extensions.Inter
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  isComplited?: boolean
+  isCompleted?: boolean
   userId?: boolean
-  user?: boolean | Prisma.PomodoroSession$userArgs<ExtArgs>
   rounds?: boolean | Prisma.PomodoroSession$roundsArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.PomodoroSessionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pomodoroSession"]>
 
@@ -562,53 +562,53 @@ export type PomodoroSessionSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  isComplited?: boolean
+  isCompleted?: boolean
   userId?: boolean
-  user?: boolean | Prisma.PomodoroSession$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pomodoroSession"]>
 
 export type PomodoroSessionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  isComplited?: boolean
+  isCompleted?: boolean
   userId?: boolean
-  user?: boolean | Prisma.PomodoroSession$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pomodoroSession"]>
 
 export type PomodoroSessionSelectScalar = {
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  isComplited?: boolean
+  isCompleted?: boolean
   userId?: boolean
 }
 
-export type PomodoroSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "isComplited" | "userId", ExtArgs["result"]["pomodoroSession"]>
+export type PomodoroSessionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "isCompleted" | "userId", ExtArgs["result"]["pomodoroSession"]>
 export type PomodoroSessionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.PomodoroSession$userArgs<ExtArgs>
   rounds?: boolean | Prisma.PomodoroSession$roundsArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.PomodoroSessionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PomodoroSessionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.PomodoroSession$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type PomodoroSessionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  user?: boolean | Prisma.PomodoroSession$userArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $PomodoroSessionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PomodoroSession"
   objects: {
-    user: Prisma.$UserPayload<ExtArgs> | null
     rounds: Prisma.$PomodoroRoundPayload<ExtArgs>[]
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     createdAt: Date
     updatedAt: Date
-    isComplited: boolean
-    userId: string | null
+    isCompleted: boolean | null
+    userId: string
   }, ExtArgs["result"]["pomodoroSession"]>
   composites: {}
 }
@@ -1003,8 +1003,8 @@ readonly fields: PomodoroSessionFieldRefs;
  */
 export interface Prisma__PomodoroSessionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  user<T extends Prisma.PomodoroSession$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PomodoroSession$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   rounds<T extends Prisma.PomodoroSession$roundsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PomodoroSession$roundsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PomodoroRoundPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1037,7 +1037,7 @@ export interface PomodoroSessionFieldRefs {
   readonly id: Prisma.FieldRef<"PomodoroSession", 'String'>
   readonly createdAt: Prisma.FieldRef<"PomodoroSession", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PomodoroSession", 'DateTime'>
-  readonly isComplited: Prisma.FieldRef<"PomodoroSession", 'Boolean'>
+  readonly isCompleted: Prisma.FieldRef<"PomodoroSession", 'Boolean'>
   readonly userId: Prisma.FieldRef<"PomodoroSession", 'String'>
 }
     
@@ -1437,25 +1437,6 @@ export type PomodoroSessionDeleteManyArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many PomodoroSessions to delete.
    */
   limit?: number
-}
-
-/**
- * PomodoroSession.user
- */
-export type PomodoroSession$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the User
-   */
-  select?: Prisma.UserSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the User
-   */
-  omit?: Prisma.UserOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
 }
 
 /**

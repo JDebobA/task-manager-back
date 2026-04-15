@@ -50,6 +50,11 @@ export type User = Prisma.UserModel
  */
 export type Task = Prisma.TaskModel
 /**
+ * Model TimeBlock
+ * 
+ */
+export type TimeBlock = Prisma.TimeBlockModel
+/**
  * Model PomodoroSession
  * 
  */
@@ -59,8 +64,3 @@ export type PomodoroSession = Prisma.PomodoroSessionModel
  * 
  */
 export type PomodoroRound = Prisma.PomodoroRoundModel
-/**
- * Model Timeblock
- * 
- */
-export type Timeblock = Prisma.TimeblockModel

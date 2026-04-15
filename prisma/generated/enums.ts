@@ -12,8 +12,7 @@
 export const Priority = {
   low: 'low',
   medium: 'medium',
-  high: 'high',
-  highest: 'highest'
+  high: 'high'
 } as const
 
 export type Priority = (typeof Priority)[keyof typeof Priority]

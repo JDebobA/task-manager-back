@@ -4,7 +4,7 @@
 // biome-ignore-all lint: generated file
 // @ts-nocheck 
 /*
- * This file exports the `Timeblock` model and its related types.
+ * This file exports the `TimeBlock` model and its related types.
  *
  * 🟢 You can import this file directly.
  */
@@ -13,514 +13,638 @@ import type * as $Enums from "../enums.js"
 import type * as Prisma from "../internal/prismaNamespace.js"
 
 /**
- * Model Timeblock
+ * Model TimeBlock
  * 
  */
-export type TimeblockModel = runtime.Types.Result.DefaultSelection<Prisma.$TimeblockPayload>
+export type TimeBlockModel = runtime.Types.Result.DefaultSelection<Prisma.$TimeBlockPayload>
 
-export type AggregateTimeblock = {
-  _count: TimeblockCountAggregateOutputType | null
-  _min: TimeblockMinAggregateOutputType | null
-  _max: TimeblockMaxAggregateOutputType | null
+export type AggregateTimeBlock = {
+  _count: TimeBlockCountAggregateOutputType | null
+  _avg: TimeBlockAvgAggregateOutputType | null
+  _sum: TimeBlockSumAggregateOutputType | null
+  _min: TimeBlockMinAggregateOutputType | null
+  _max: TimeBlockMaxAggregateOutputType | null
 }
 
-export type TimeblockMinAggregateOutputType = {
+export type TimeBlockAvgAggregateOutputType = {
+  duration: number | null
+  order: number | null
+}
+
+export type TimeBlockSumAggregateOutputType = {
+  duration: number | null
+  order: number | null
+}
+
+export type TimeBlockMinAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
   name: string | null
   color: string | null
+  duration: number | null
+  order: number | null
   userId: string | null
 }
 
-export type TimeblockMaxAggregateOutputType = {
+export type TimeBlockMaxAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
   name: string | null
   color: string | null
+  duration: number | null
+  order: number | null
   userId: string | null
 }
 
-export type TimeblockCountAggregateOutputType = {
+export type TimeBlockCountAggregateOutputType = {
   id: number
   createdAt: number
   updatedAt: number
   name: number
   color: number
+  duration: number
+  order: number
   userId: number
   _all: number
 }
 
 
-export type TimeblockMinAggregateInputType = {
+export type TimeBlockAvgAggregateInputType = {
+  duration?: true
+  order?: true
+}
+
+export type TimeBlockSumAggregateInputType = {
+  duration?: true
+  order?: true
+}
+
+export type TimeBlockMinAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
   name?: true
   color?: true
+  duration?: true
+  order?: true
   userId?: true
 }
 
-export type TimeblockMaxAggregateInputType = {
+export type TimeBlockMaxAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
   name?: true
   color?: true
+  duration?: true
+  order?: true
   userId?: true
 }
 
-export type TimeblockCountAggregateInputType = {
+export type TimeBlockCountAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
   name?: true
   color?: true
+  duration?: true
+  order?: true
   userId?: true
   _all?: true
 }
 
-export type TimeblockAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which Timeblock to aggregate.
+   * Filter which TimeBlock to aggregate.
    */
-  where?: Prisma.TimeblockWhereInput
+  where?: Prisma.TimeBlockWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Timeblocks to fetch.
+   * Determine the order of TimeBlocks to fetch.
    */
-  orderBy?: Prisma.TimeblockOrderByWithRelationInput | Prisma.TimeblockOrderByWithRelationInput[]
+  orderBy?: Prisma.TimeBlockOrderByWithRelationInput | Prisma.TimeBlockOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
    * Sets the start position
    */
-  cursor?: Prisma.TimeblockWhereUniqueInput
+  cursor?: Prisma.TimeBlockWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Timeblocks from the position of the cursor.
+   * Take `±n` TimeBlocks from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Timeblocks.
+   * Skip the first `n` TimeBlocks.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Count returned Timeblocks
+   * Count returned TimeBlocks
   **/
-  _count?: true | TimeblockCountAggregateInputType
+  _count?: true | TimeBlockCountAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to average
+  **/
+  _avg?: TimeBlockAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: TimeBlockSumAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
    * Select which fields to find the minimum value
   **/
-  _min?: TimeblockMinAggregateInputType
+  _min?: TimeBlockMinAggregateInputType
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
    * Select which fields to find the maximum value
   **/
-  _max?: TimeblockMaxAggregateInputType
+  _max?: TimeBlockMaxAggregateInputType
 }
 
-export type GetTimeblockAggregateType<T extends TimeblockAggregateArgs> = {
-      [P in keyof T & keyof AggregateTimeblock]: P extends '_count' | 'count'
+export type GetTimeBlockAggregateType<T extends TimeBlockAggregateArgs> = {
+      [P in keyof T & keyof AggregateTimeBlock]: P extends '_count' | 'count'
     ? T[P] extends true
       ? number
-      : Prisma.GetScalarType<T[P], AggregateTimeblock[P]>
-    : Prisma.GetScalarType<T[P], AggregateTimeblock[P]>
+      : Prisma.GetScalarType<T[P], AggregateTimeBlock[P]>
+    : Prisma.GetScalarType<T[P], AggregateTimeBlock[P]>
 }
 
 
 
 
-export type TimeblockGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.TimeblockWhereInput
-  orderBy?: Prisma.TimeblockOrderByWithAggregationInput | Prisma.TimeblockOrderByWithAggregationInput[]
-  by: Prisma.TimeblockScalarFieldEnum[] | Prisma.TimeblockScalarFieldEnum
-  having?: Prisma.TimeblockScalarWhereWithAggregatesInput
+export type TimeBlockGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TimeBlockWhereInput
+  orderBy?: Prisma.TimeBlockOrderByWithAggregationInput | Prisma.TimeBlockOrderByWithAggregationInput[]
+  by: Prisma.TimeBlockScalarFieldEnum[] | Prisma.TimeBlockScalarFieldEnum
+  having?: Prisma.TimeBlockScalarWhereWithAggregatesInput
   take?: number
   skip?: number
-  _count?: TimeblockCountAggregateInputType | true
-  _min?: TimeblockMinAggregateInputType
-  _max?: TimeblockMaxAggregateInputType
+  _count?: TimeBlockCountAggregateInputType | true
+  _avg?: TimeBlockAvgAggregateInputType
+  _sum?: TimeBlockSumAggregateInputType
+  _min?: TimeBlockMinAggregateInputType
+  _max?: TimeBlockMaxAggregateInputType
 }
 
-export type TimeblockGroupByOutputType = {
+export type TimeBlockGroupByOutputType = {
   id: string
   createdAt: Date
   updatedAt: Date
   name: string
-  color: string
+  color: string | null
+  duration: number
+  order: number
   userId: string
-  _count: TimeblockCountAggregateOutputType | null
-  _min: TimeblockMinAggregateOutputType | null
-  _max: TimeblockMaxAggregateOutputType | null
+  _count: TimeBlockCountAggregateOutputType | null
+  _avg: TimeBlockAvgAggregateOutputType | null
+  _sum: TimeBlockSumAggregateOutputType | null
+  _min: TimeBlockMinAggregateOutputType | null
+  _max: TimeBlockMaxAggregateOutputType | null
 }
 
-type GetTimeblockGroupByPayload<T extends TimeblockGroupByArgs> = Prisma.PrismaPromise<
+type GetTimeBlockGroupByPayload<T extends TimeBlockGroupByArgs> = Prisma.PrismaPromise<
   Array<
-    Prisma.PickEnumerable<TimeblockGroupByOutputType, T['by']> &
+    Prisma.PickEnumerable<TimeBlockGroupByOutputType, T['by']> &
       {
-        [P in ((keyof T) & (keyof TimeblockGroupByOutputType))]: P extends '_count'
+        [P in ((keyof T) & (keyof TimeBlockGroupByOutputType))]: P extends '_count'
           ? T[P] extends boolean
             ? number
-            : Prisma.GetScalarType<T[P], TimeblockGroupByOutputType[P]>
-          : Prisma.GetScalarType<T[P], TimeblockGroupByOutputType[P]>
+            : Prisma.GetScalarType<T[P], TimeBlockGroupByOutputType[P]>
+          : Prisma.GetScalarType<T[P], TimeBlockGroupByOutputType[P]>
       }
     >
   >
 
 
 
-export type TimeblockWhereInput = {
-  AND?: Prisma.TimeblockWhereInput | Prisma.TimeblockWhereInput[]
-  OR?: Prisma.TimeblockWhereInput[]
-  NOT?: Prisma.TimeblockWhereInput | Prisma.TimeblockWhereInput[]
-  id?: Prisma.StringFilter<"Timeblock"> | string
-  createdAt?: Prisma.DateTimeFilter<"Timeblock"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Timeblock"> | Date | string
-  name?: Prisma.StringFilter<"Timeblock"> | string
-  color?: Prisma.StringFilter<"Timeblock"> | string
-  userId?: Prisma.StringFilter<"Timeblock"> | string
+export type TimeBlockWhereInput = {
+  AND?: Prisma.TimeBlockWhereInput | Prisma.TimeBlockWhereInput[]
+  OR?: Prisma.TimeBlockWhereInput[]
+  NOT?: Prisma.TimeBlockWhereInput | Prisma.TimeBlockWhereInput[]
+  id?: Prisma.StringFilter<"TimeBlock"> | string
+  createdAt?: Prisma.DateTimeFilter<"TimeBlock"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TimeBlock"> | Date | string
+  name?: Prisma.StringFilter<"TimeBlock"> | string
+  color?: Prisma.StringNullableFilter<"TimeBlock"> | string | null
+  duration?: Prisma.IntFilter<"TimeBlock"> | number
+  order?: Prisma.IntFilter<"TimeBlock"> | number
+  userId?: Prisma.StringFilter<"TimeBlock"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
-export type TimeblockOrderByWithRelationInput = {
+export type TimeBlockOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  color?: Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
+  duration?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
 
-export type TimeblockWhereUniqueInput = Prisma.AtLeast<{
+export type TimeBlockWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  AND?: Prisma.TimeblockWhereInput | Prisma.TimeblockWhereInput[]
-  OR?: Prisma.TimeblockWhereInput[]
-  NOT?: Prisma.TimeblockWhereInput | Prisma.TimeblockWhereInput[]
-  createdAt?: Prisma.DateTimeFilter<"Timeblock"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Timeblock"> | Date | string
-  name?: Prisma.StringFilter<"Timeblock"> | string
-  color?: Prisma.StringFilter<"Timeblock"> | string
-  userId?: Prisma.StringFilter<"Timeblock"> | string
+  AND?: Prisma.TimeBlockWhereInput | Prisma.TimeBlockWhereInput[]
+  OR?: Prisma.TimeBlockWhereInput[]
+  NOT?: Prisma.TimeBlockWhereInput | Prisma.TimeBlockWhereInput[]
+  createdAt?: Prisma.DateTimeFilter<"TimeBlock"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TimeBlock"> | Date | string
+  name?: Prisma.StringFilter<"TimeBlock"> | string
+  color?: Prisma.StringNullableFilter<"TimeBlock"> | string | null
+  duration?: Prisma.IntFilter<"TimeBlock"> | number
+  order?: Prisma.IntFilter<"TimeBlock"> | number
+  userId?: Prisma.StringFilter<"TimeBlock"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
-export type TimeblockOrderByWithAggregationInput = {
+export type TimeBlockOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  color?: Prisma.SortOrder
+  color?: Prisma.SortOrderInput | Prisma.SortOrder
+  duration?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  _count?: Prisma.TimeblockCountOrderByAggregateInput
-  _max?: Prisma.TimeblockMaxOrderByAggregateInput
-  _min?: Prisma.TimeblockMinOrderByAggregateInput
+  _count?: Prisma.TimeBlockCountOrderByAggregateInput
+  _avg?: Prisma.TimeBlockAvgOrderByAggregateInput
+  _max?: Prisma.TimeBlockMaxOrderByAggregateInput
+  _min?: Prisma.TimeBlockMinOrderByAggregateInput
+  _sum?: Prisma.TimeBlockSumOrderByAggregateInput
 }
 
-export type TimeblockScalarWhereWithAggregatesInput = {
-  AND?: Prisma.TimeblockScalarWhereWithAggregatesInput | Prisma.TimeblockScalarWhereWithAggregatesInput[]
-  OR?: Prisma.TimeblockScalarWhereWithAggregatesInput[]
-  NOT?: Prisma.TimeblockScalarWhereWithAggregatesInput | Prisma.TimeblockScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Timeblock"> | string
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Timeblock"> | Date | string
-  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Timeblock"> | Date | string
-  name?: Prisma.StringWithAggregatesFilter<"Timeblock"> | string
-  color?: Prisma.StringWithAggregatesFilter<"Timeblock"> | string
-  userId?: Prisma.StringWithAggregatesFilter<"Timeblock"> | string
+export type TimeBlockScalarWhereWithAggregatesInput = {
+  AND?: Prisma.TimeBlockScalarWhereWithAggregatesInput | Prisma.TimeBlockScalarWhereWithAggregatesInput[]
+  OR?: Prisma.TimeBlockScalarWhereWithAggregatesInput[]
+  NOT?: Prisma.TimeBlockScalarWhereWithAggregatesInput | Prisma.TimeBlockScalarWhereWithAggregatesInput[]
+  id?: Prisma.StringWithAggregatesFilter<"TimeBlock"> | string
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"TimeBlock"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"TimeBlock"> | Date | string
+  name?: Prisma.StringWithAggregatesFilter<"TimeBlock"> | string
+  color?: Prisma.StringNullableWithAggregatesFilter<"TimeBlock"> | string | null
+  duration?: Prisma.IntWithAggregatesFilter<"TimeBlock"> | number
+  order?: Prisma.IntWithAggregatesFilter<"TimeBlock"> | number
+  userId?: Prisma.StringWithAggregatesFilter<"TimeBlock"> | string
 }
 
-export type TimeblockCreateInput = {
+export type TimeBlockCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   name: string
-  color?: string
-  user: Prisma.UserCreateNestedOneWithoutTimeBlockInput
+  color?: string | null
+  duration: number
+  order?: number
+  user: Prisma.UserCreateNestedOneWithoutTimeblocksInput
 }
 
-export type TimeblockUncheckedCreateInput = {
+export type TimeBlockUncheckedCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   name: string
-  color?: string
+  color?: string | null
+  duration: number
+  order?: number
   userId: string
 }
 
-export type TimeblockUpdateInput = {
+export type TimeBlockUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutTimeBlockNestedInput
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  duration?: Prisma.IntFieldUpdateOperationsInput | number
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  user?: Prisma.UserUpdateOneRequiredWithoutTimeblocksNestedInput
 }
 
-export type TimeblockUncheckedUpdateInput = {
+export type TimeBlockUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  duration?: Prisma.IntFieldUpdateOperationsInput | number
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type TimeblockCreateManyInput = {
+export type TimeBlockCreateManyInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   name: string
-  color?: string
+  color?: string | null
+  duration: number
+  order?: number
   userId: string
 }
 
-export type TimeblockUpdateManyMutationInput = {
+export type TimeBlockUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  duration?: Prisma.IntFieldUpdateOperationsInput | number
+  order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type TimeblockUncheckedUpdateManyInput = {
+export type TimeBlockUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  duration?: Prisma.IntFieldUpdateOperationsInput | number
+  order?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
-export type TimeblockListRelationFilter = {
-  every?: Prisma.TimeblockWhereInput
-  some?: Prisma.TimeblockWhereInput
-  none?: Prisma.TimeblockWhereInput
+export type TimeBlockListRelationFilter = {
+  every?: Prisma.TimeBlockWhereInput
+  some?: Prisma.TimeBlockWhereInput
+  none?: Prisma.TimeBlockWhereInput
 }
 
-export type TimeblockOrderByRelationAggregateInput = {
+export type TimeBlockOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type TimeblockCountOrderByAggregateInput = {
+export type TimeBlockCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
-export type TimeblockMaxOrderByAggregateInput = {
+export type TimeBlockAvgOrderByAggregateInput = {
+  duration?: Prisma.SortOrder
+  order?: Prisma.SortOrder
+}
+
+export type TimeBlockMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
-export type TimeblockMinOrderByAggregateInput = {
+export type TimeBlockMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   name?: Prisma.SortOrder
   color?: Prisma.SortOrder
+  duration?: Prisma.SortOrder
+  order?: Prisma.SortOrder
   userId?: Prisma.SortOrder
 }
 
-export type TimeblockCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TimeblockCreateWithoutUserInput, Prisma.TimeblockUncheckedCreateWithoutUserInput> | Prisma.TimeblockCreateWithoutUserInput[] | Prisma.TimeblockUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TimeblockCreateOrConnectWithoutUserInput | Prisma.TimeblockCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.TimeblockCreateManyUserInputEnvelope
-  connect?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
+export type TimeBlockSumOrderByAggregateInput = {
+  duration?: Prisma.SortOrder
+  order?: Prisma.SortOrder
 }
 
-export type TimeblockUncheckedCreateNestedManyWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.TimeblockCreateWithoutUserInput, Prisma.TimeblockUncheckedCreateWithoutUserInput> | Prisma.TimeblockCreateWithoutUserInput[] | Prisma.TimeblockUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TimeblockCreateOrConnectWithoutUserInput | Prisma.TimeblockCreateOrConnectWithoutUserInput[]
-  createMany?: Prisma.TimeblockCreateManyUserInputEnvelope
-  connect?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
+export type TimeBlockCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TimeBlockCreateWithoutUserInput, Prisma.TimeBlockUncheckedCreateWithoutUserInput> | Prisma.TimeBlockCreateWithoutUserInput[] | Prisma.TimeBlockUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TimeBlockCreateOrConnectWithoutUserInput | Prisma.TimeBlockCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.TimeBlockCreateManyUserInputEnvelope
+  connect?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
 }
 
-export type TimeblockUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TimeblockCreateWithoutUserInput, Prisma.TimeblockUncheckedCreateWithoutUserInput> | Prisma.TimeblockCreateWithoutUserInput[] | Prisma.TimeblockUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TimeblockCreateOrConnectWithoutUserInput | Prisma.TimeblockCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.TimeblockUpsertWithWhereUniqueWithoutUserInput | Prisma.TimeblockUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.TimeblockCreateManyUserInputEnvelope
-  set?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  disconnect?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  delete?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  connect?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  update?: Prisma.TimeblockUpdateWithWhereUniqueWithoutUserInput | Prisma.TimeblockUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.TimeblockUpdateManyWithWhereWithoutUserInput | Prisma.TimeblockUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.TimeblockScalarWhereInput | Prisma.TimeblockScalarWhereInput[]
+export type TimeBlockUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.TimeBlockCreateWithoutUserInput, Prisma.TimeBlockUncheckedCreateWithoutUserInput> | Prisma.TimeBlockCreateWithoutUserInput[] | Prisma.TimeBlockUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TimeBlockCreateOrConnectWithoutUserInput | Prisma.TimeBlockCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.TimeBlockCreateManyUserInputEnvelope
+  connect?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
 }
 
-export type TimeblockUncheckedUpdateManyWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.TimeblockCreateWithoutUserInput, Prisma.TimeblockUncheckedCreateWithoutUserInput> | Prisma.TimeblockCreateWithoutUserInput[] | Prisma.TimeblockUncheckedCreateWithoutUserInput[]
-  connectOrCreate?: Prisma.TimeblockCreateOrConnectWithoutUserInput | Prisma.TimeblockCreateOrConnectWithoutUserInput[]
-  upsert?: Prisma.TimeblockUpsertWithWhereUniqueWithoutUserInput | Prisma.TimeblockUpsertWithWhereUniqueWithoutUserInput[]
-  createMany?: Prisma.TimeblockCreateManyUserInputEnvelope
-  set?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  disconnect?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  delete?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  connect?: Prisma.TimeblockWhereUniqueInput | Prisma.TimeblockWhereUniqueInput[]
-  update?: Prisma.TimeblockUpdateWithWhereUniqueWithoutUserInput | Prisma.TimeblockUpdateWithWhereUniqueWithoutUserInput[]
-  updateMany?: Prisma.TimeblockUpdateManyWithWhereWithoutUserInput | Prisma.TimeblockUpdateManyWithWhereWithoutUserInput[]
-  deleteMany?: Prisma.TimeblockScalarWhereInput | Prisma.TimeblockScalarWhereInput[]
+export type TimeBlockUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TimeBlockCreateWithoutUserInput, Prisma.TimeBlockUncheckedCreateWithoutUserInput> | Prisma.TimeBlockCreateWithoutUserInput[] | Prisma.TimeBlockUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TimeBlockCreateOrConnectWithoutUserInput | Prisma.TimeBlockCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.TimeBlockUpsertWithWhereUniqueWithoutUserInput | Prisma.TimeBlockUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.TimeBlockCreateManyUserInputEnvelope
+  set?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  disconnect?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  delete?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  connect?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  update?: Prisma.TimeBlockUpdateWithWhereUniqueWithoutUserInput | Prisma.TimeBlockUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.TimeBlockUpdateManyWithWhereWithoutUserInput | Prisma.TimeBlockUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.TimeBlockScalarWhereInput | Prisma.TimeBlockScalarWhereInput[]
 }
 
-export type TimeblockCreateWithoutUserInput = {
+export type TimeBlockUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.TimeBlockCreateWithoutUserInput, Prisma.TimeBlockUncheckedCreateWithoutUserInput> | Prisma.TimeBlockCreateWithoutUserInput[] | Prisma.TimeBlockUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.TimeBlockCreateOrConnectWithoutUserInput | Prisma.TimeBlockCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.TimeBlockUpsertWithWhereUniqueWithoutUserInput | Prisma.TimeBlockUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.TimeBlockCreateManyUserInputEnvelope
+  set?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  disconnect?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  delete?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  connect?: Prisma.TimeBlockWhereUniqueInput | Prisma.TimeBlockWhereUniqueInput[]
+  update?: Prisma.TimeBlockUpdateWithWhereUniqueWithoutUserInput | Prisma.TimeBlockUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.TimeBlockUpdateManyWithWhereWithoutUserInput | Prisma.TimeBlockUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.TimeBlockScalarWhereInput | Prisma.TimeBlockScalarWhereInput[]
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type TimeBlockCreateWithoutUserInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   name: string
-  color?: string
+  color?: string | null
+  duration: number
+  order?: number
 }
 
-export type TimeblockUncheckedCreateWithoutUserInput = {
+export type TimeBlockUncheckedCreateWithoutUserInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   name: string
-  color?: string
+  color?: string | null
+  duration: number
+  order?: number
 }
 
-export type TimeblockCreateOrConnectWithoutUserInput = {
-  where: Prisma.TimeblockWhereUniqueInput
-  create: Prisma.XOR<Prisma.TimeblockCreateWithoutUserInput, Prisma.TimeblockUncheckedCreateWithoutUserInput>
+export type TimeBlockCreateOrConnectWithoutUserInput = {
+  where: Prisma.TimeBlockWhereUniqueInput
+  create: Prisma.XOR<Prisma.TimeBlockCreateWithoutUserInput, Prisma.TimeBlockUncheckedCreateWithoutUserInput>
 }
 
-export type TimeblockCreateManyUserInputEnvelope = {
-  data: Prisma.TimeblockCreateManyUserInput | Prisma.TimeblockCreateManyUserInput[]
+export type TimeBlockCreateManyUserInputEnvelope = {
+  data: Prisma.TimeBlockCreateManyUserInput | Prisma.TimeBlockCreateManyUserInput[]
   skipDuplicates?: boolean
 }
 
-export type TimeblockUpsertWithWhereUniqueWithoutUserInput = {
-  where: Prisma.TimeblockWhereUniqueInput
-  update: Prisma.XOR<Prisma.TimeblockUpdateWithoutUserInput, Prisma.TimeblockUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.TimeblockCreateWithoutUserInput, Prisma.TimeblockUncheckedCreateWithoutUserInput>
+export type TimeBlockUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.TimeBlockWhereUniqueInput
+  update: Prisma.XOR<Prisma.TimeBlockUpdateWithoutUserInput, Prisma.TimeBlockUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.TimeBlockCreateWithoutUserInput, Prisma.TimeBlockUncheckedCreateWithoutUserInput>
 }
 
-export type TimeblockUpdateWithWhereUniqueWithoutUserInput = {
-  where: Prisma.TimeblockWhereUniqueInput
-  data: Prisma.XOR<Prisma.TimeblockUpdateWithoutUserInput, Prisma.TimeblockUncheckedUpdateWithoutUserInput>
+export type TimeBlockUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.TimeBlockWhereUniqueInput
+  data: Prisma.XOR<Prisma.TimeBlockUpdateWithoutUserInput, Prisma.TimeBlockUncheckedUpdateWithoutUserInput>
 }
 
-export type TimeblockUpdateManyWithWhereWithoutUserInput = {
-  where: Prisma.TimeblockScalarWhereInput
-  data: Prisma.XOR<Prisma.TimeblockUpdateManyMutationInput, Prisma.TimeblockUncheckedUpdateManyWithoutUserInput>
+export type TimeBlockUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.TimeBlockScalarWhereInput
+  data: Prisma.XOR<Prisma.TimeBlockUpdateManyMutationInput, Prisma.TimeBlockUncheckedUpdateManyWithoutUserInput>
 }
 
-export type TimeblockScalarWhereInput = {
-  AND?: Prisma.TimeblockScalarWhereInput | Prisma.TimeblockScalarWhereInput[]
-  OR?: Prisma.TimeblockScalarWhereInput[]
-  NOT?: Prisma.TimeblockScalarWhereInput | Prisma.TimeblockScalarWhereInput[]
-  id?: Prisma.StringFilter<"Timeblock"> | string
-  createdAt?: Prisma.DateTimeFilter<"Timeblock"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Timeblock"> | Date | string
-  name?: Prisma.StringFilter<"Timeblock"> | string
-  color?: Prisma.StringFilter<"Timeblock"> | string
-  userId?: Prisma.StringFilter<"Timeblock"> | string
+export type TimeBlockScalarWhereInput = {
+  AND?: Prisma.TimeBlockScalarWhereInput | Prisma.TimeBlockScalarWhereInput[]
+  OR?: Prisma.TimeBlockScalarWhereInput[]
+  NOT?: Prisma.TimeBlockScalarWhereInput | Prisma.TimeBlockScalarWhereInput[]
+  id?: Prisma.StringFilter<"TimeBlock"> | string
+  createdAt?: Prisma.DateTimeFilter<"TimeBlock"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"TimeBlock"> | Date | string
+  name?: Prisma.StringFilter<"TimeBlock"> | string
+  color?: Prisma.StringNullableFilter<"TimeBlock"> | string | null
+  duration?: Prisma.IntFilter<"TimeBlock"> | number
+  order?: Prisma.IntFilter<"TimeBlock"> | number
+  userId?: Prisma.StringFilter<"TimeBlock"> | string
 }
 
-export type TimeblockCreateManyUserInput = {
+export type TimeBlockCreateManyUserInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   name: string
-  color?: string
+  color?: string | null
+  duration: number
+  order?: number
 }
 
-export type TimeblockUpdateWithoutUserInput = {
+export type TimeBlockUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  duration?: Prisma.IntFieldUpdateOperationsInput | number
+  order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type TimeblockUncheckedUpdateWithoutUserInput = {
+export type TimeBlockUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  duration?: Prisma.IntFieldUpdateOperationsInput | number
+  order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type TimeblockUncheckedUpdateManyWithoutUserInput = {
+export type TimeBlockUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  color?: Prisma.StringFieldUpdateOperationsInput | string
+  color?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  duration?: Prisma.IntFieldUpdateOperationsInput | number
+  order?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
 
-export type TimeblockSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type TimeBlockSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   name?: boolean
   color?: boolean
+  duration?: boolean
+  order?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["timeblock"]>
+}, ExtArgs["result"]["timeBlock"]>
 
-export type TimeblockSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type TimeBlockSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   name?: boolean
   color?: boolean
+  duration?: boolean
+  order?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["timeblock"]>
+}, ExtArgs["result"]["timeBlock"]>
 
-export type TimeblockSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
+export type TimeBlockSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   name?: boolean
   color?: boolean
+  duration?: boolean
+  order?: boolean
   userId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-}, ExtArgs["result"]["timeblock"]>
+}, ExtArgs["result"]["timeBlock"]>
 
-export type TimeblockSelectScalar = {
+export type TimeBlockSelectScalar = {
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   name?: boolean
   color?: boolean
+  duration?: boolean
+  order?: boolean
   userId?: boolean
 }
 
-export type TimeblockOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "color" | "userId", ExtArgs["result"]["timeblock"]>
-export type TimeblockInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "name" | "color" | "duration" | "order" | "userId", ExtArgs["result"]["timeBlock"]>
+export type TimeBlockInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
-export type TimeblockIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
-export type TimeblockIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
-export type $TimeblockPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  name: "Timeblock"
+export type $TimeBlockPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  name: "TimeBlock"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
   }
@@ -529,138 +653,140 @@ export type $TimeblockPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     createdAt: Date
     updatedAt: Date
     name: string
-    color: string
+    color: string | null
+    duration: number
+    order: number
     userId: string
-  }, ExtArgs["result"]["timeblock"]>
+  }, ExtArgs["result"]["timeBlock"]>
   composites: {}
 }
 
-export type TimeblockGetPayload<S extends boolean | null | undefined | TimeblockDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$TimeblockPayload, S>
+export type TimeBlockGetPayload<S extends boolean | null | undefined | TimeBlockDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload, S>
 
-export type TimeblockCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
-  Omit<TimeblockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-    select?: TimeblockCountAggregateInputType | true
+export type TimeBlockCountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> =
+  Omit<TimeBlockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: TimeBlockCountAggregateInputType | true
   }
 
-export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Timeblock'], meta: { name: 'Timeblock' } }
+export interface TimeBlockDelegate<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TimeBlock'], meta: { name: 'TimeBlock' } }
   /**
-   * Find zero or one Timeblock that matches the filter.
-   * @param {TimeblockFindUniqueArgs} args - Arguments to find a Timeblock
+   * Find zero or one TimeBlock that matches the filter.
+   * @param {TimeBlockFindUniqueArgs} args - Arguments to find a TimeBlock
    * @example
-   * // Get one Timeblock
-   * const timeblock = await prisma.timeblock.findUnique({
+   * // Get one TimeBlock
+   * const timeBlock = await prisma.timeBlock.findUnique({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findUnique<T extends TimeblockFindUniqueArgs>(args: Prisma.SelectSubset<T, TimeblockFindUniqueArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findUnique<T extends TimeBlockFindUniqueArgs>(args: Prisma.SelectSubset<T, TimeBlockFindUniqueArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Find one Timeblock that matches the filter or throw an error with `error.code='P2025'`
+   * Find one TimeBlock that matches the filter or throw an error with `error.code='P2025'`
    * if no matches were found.
-   * @param {TimeblockFindUniqueOrThrowArgs} args - Arguments to find a Timeblock
+   * @param {TimeBlockFindUniqueOrThrowArgs} args - Arguments to find a TimeBlock
    * @example
-   * // Get one Timeblock
-   * const timeblock = await prisma.timeblock.findUniqueOrThrow({
+   * // Get one TimeBlock
+   * const timeBlock = await prisma.timeBlock.findUniqueOrThrow({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findUniqueOrThrow<T extends TimeblockFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, TimeblockFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findUniqueOrThrow<T extends TimeBlockFindUniqueOrThrowArgs>(args: Prisma.SelectSubset<T, TimeBlockFindUniqueOrThrowArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Find the first Timeblock that matches the filter.
+   * Find the first TimeBlock that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {TimeblockFindFirstArgs} args - Arguments to find a Timeblock
+   * @param {TimeBlockFindFirstArgs} args - Arguments to find a TimeBlock
    * @example
-   * // Get one Timeblock
-   * const timeblock = await prisma.timeblock.findFirst({
+   * // Get one TimeBlock
+   * const timeBlock = await prisma.timeBlock.findFirst({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findFirst<T extends TimeblockFindFirstArgs>(args?: Prisma.SelectSubset<T, TimeblockFindFirstArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  findFirst<T extends TimeBlockFindFirstArgs>(args?: Prisma.SelectSubset<T, TimeBlockFindFirstArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Find the first Timeblock that matches the filter or
+   * Find the first TimeBlock that matches the filter or
    * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {TimeblockFindFirstOrThrowArgs} args - Arguments to find a Timeblock
+   * @param {TimeBlockFindFirstOrThrowArgs} args - Arguments to find a TimeBlock
    * @example
-   * // Get one Timeblock
-   * const timeblock = await prisma.timeblock.findFirstOrThrow({
+   * // Get one TimeBlock
+   * const timeBlock = await prisma.timeBlock.findFirstOrThrow({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    */
-  findFirstOrThrow<T extends TimeblockFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, TimeblockFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  findFirstOrThrow<T extends TimeBlockFindFirstOrThrowArgs>(args?: Prisma.SelectSubset<T, TimeBlockFindFirstOrThrowArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Find zero or more Timeblocks that matches the filter.
+   * Find zero or more TimeBlocks that matches the filter.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {TimeblockFindManyArgs} args - Arguments to filter and select certain fields only.
+   * @param {TimeBlockFindManyArgs} args - Arguments to filter and select certain fields only.
    * @example
-   * // Get all Timeblocks
-   * const timeblocks = await prisma.timeblock.findMany()
+   * // Get all TimeBlocks
+   * const timeBlocks = await prisma.timeBlock.findMany()
    * 
-   * // Get first 10 Timeblocks
-   * const timeblocks = await prisma.timeblock.findMany({ take: 10 })
+   * // Get first 10 TimeBlocks
+   * const timeBlocks = await prisma.timeBlock.findMany({ take: 10 })
    * 
    * // Only select the `id`
-   * const timeblockWithIdOnly = await prisma.timeblock.findMany({ select: { id: true } })
+   * const timeBlockWithIdOnly = await prisma.timeBlock.findMany({ select: { id: true } })
    * 
    */
-  findMany<T extends TimeblockFindManyArgs>(args?: Prisma.SelectSubset<T, TimeblockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+  findMany<T extends TimeBlockFindManyArgs>(args?: Prisma.SelectSubset<T, TimeBlockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
   /**
-   * Create a Timeblock.
-   * @param {TimeblockCreateArgs} args - Arguments to create a Timeblock.
+   * Create a TimeBlock.
+   * @param {TimeBlockCreateArgs} args - Arguments to create a TimeBlock.
    * @example
-   * // Create one Timeblock
-   * const Timeblock = await prisma.timeblock.create({
+   * // Create one TimeBlock
+   * const TimeBlock = await prisma.timeBlock.create({
    *   data: {
-   *     // ... data to create a Timeblock
+   *     // ... data to create a TimeBlock
    *   }
    * })
    * 
    */
-  create<T extends TimeblockCreateArgs>(args: Prisma.SelectSubset<T, TimeblockCreateArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  create<T extends TimeBlockCreateArgs>(args: Prisma.SelectSubset<T, TimeBlockCreateArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Create many Timeblocks.
-   * @param {TimeblockCreateManyArgs} args - Arguments to create many Timeblocks.
+   * Create many TimeBlocks.
+   * @param {TimeBlockCreateManyArgs} args - Arguments to create many TimeBlocks.
    * @example
-   * // Create many Timeblocks
-   * const timeblock = await prisma.timeblock.createMany({
+   * // Create many TimeBlocks
+   * const timeBlock = await prisma.timeBlock.createMany({
    *   data: [
    *     // ... provide data here
    *   ]
    * })
    *     
    */
-  createMany<T extends TimeblockCreateManyArgs>(args?: Prisma.SelectSubset<T, TimeblockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  createMany<T extends TimeBlockCreateManyArgs>(args?: Prisma.SelectSubset<T, TimeBlockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
-   * Create many Timeblocks and returns the data saved in the database.
-   * @param {TimeblockCreateManyAndReturnArgs} args - Arguments to create many Timeblocks.
+   * Create many TimeBlocks and returns the data saved in the database.
+   * @param {TimeBlockCreateManyAndReturnArgs} args - Arguments to create many TimeBlocks.
    * @example
-   * // Create many Timeblocks
-   * const timeblock = await prisma.timeblock.createManyAndReturn({
+   * // Create many TimeBlocks
+   * const timeBlock = await prisma.timeBlock.createManyAndReturn({
    *   data: [
    *     // ... provide data here
    *   ]
    * })
    * 
-   * // Create many Timeblocks and only return the `id`
-   * const timeblockWithIdOnly = await prisma.timeblock.createManyAndReturn({
+   * // Create many TimeBlocks and only return the `id`
+   * const timeBlockWithIdOnly = await prisma.timeBlock.createManyAndReturn({
    *   select: { id: true },
    *   data: [
    *     // ... provide data here
@@ -670,28 +796,28 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  createManyAndReturn<T extends TimeblockCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, TimeblockCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+  createManyAndReturn<T extends TimeBlockCreateManyAndReturnArgs>(args?: Prisma.SelectSubset<T, TimeBlockCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
   /**
-   * Delete a Timeblock.
-   * @param {TimeblockDeleteArgs} args - Arguments to delete one Timeblock.
+   * Delete a TimeBlock.
+   * @param {TimeBlockDeleteArgs} args - Arguments to delete one TimeBlock.
    * @example
-   * // Delete one Timeblock
-   * const Timeblock = await prisma.timeblock.delete({
+   * // Delete one TimeBlock
+   * const TimeBlock = await prisma.timeBlock.delete({
    *   where: {
-   *     // ... filter to delete one Timeblock
+   *     // ... filter to delete one TimeBlock
    *   }
    * })
    * 
    */
-  delete<T extends TimeblockDeleteArgs>(args: Prisma.SelectSubset<T, TimeblockDeleteArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  delete<T extends TimeBlockDeleteArgs>(args: Prisma.SelectSubset<T, TimeBlockDeleteArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Update one Timeblock.
-   * @param {TimeblockUpdateArgs} args - Arguments to update one Timeblock.
+   * Update one TimeBlock.
+   * @param {TimeBlockUpdateArgs} args - Arguments to update one TimeBlock.
    * @example
-   * // Update one Timeblock
-   * const timeblock = await prisma.timeblock.update({
+   * // Update one TimeBlock
+   * const timeBlock = await prisma.timeBlock.update({
    *   where: {
    *     // ... provide filter here
    *   },
@@ -701,30 +827,30 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    * 
    */
-  update<T extends TimeblockUpdateArgs>(args: Prisma.SelectSubset<T, TimeblockUpdateArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  update<T extends TimeBlockUpdateArgs>(args: Prisma.SelectSubset<T, TimeBlockUpdateArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
   /**
-   * Delete zero or more Timeblocks.
-   * @param {TimeblockDeleteManyArgs} args - Arguments to filter Timeblocks to delete.
+   * Delete zero or more TimeBlocks.
+   * @param {TimeBlockDeleteManyArgs} args - Arguments to filter TimeBlocks to delete.
    * @example
-   * // Delete a few Timeblocks
-   * const { count } = await prisma.timeblock.deleteMany({
+   * // Delete a few TimeBlocks
+   * const { count } = await prisma.timeBlock.deleteMany({
    *   where: {
    *     // ... provide filter here
    *   }
    * })
    * 
    */
-  deleteMany<T extends TimeblockDeleteManyArgs>(args?: Prisma.SelectSubset<T, TimeblockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  deleteMany<T extends TimeBlockDeleteManyArgs>(args?: Prisma.SelectSubset<T, TimeBlockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
-   * Update zero or more Timeblocks.
+   * Update zero or more TimeBlocks.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {TimeblockUpdateManyArgs} args - Arguments to update one or more rows.
+   * @param {TimeBlockUpdateManyArgs} args - Arguments to update one or more rows.
    * @example
-   * // Update many Timeblocks
-   * const timeblock = await prisma.timeblock.updateMany({
+   * // Update many TimeBlocks
+   * const timeBlock = await prisma.timeBlock.updateMany({
    *   where: {
    *     // ... provide filter here
    *   },
@@ -734,14 +860,14 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * })
    * 
    */
-  updateMany<T extends TimeblockUpdateManyArgs>(args: Prisma.SelectSubset<T, TimeblockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
+  updateMany<T extends TimeBlockUpdateManyArgs>(args: Prisma.SelectSubset<T, TimeBlockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<Prisma.BatchPayload>
 
   /**
-   * Update zero or more Timeblocks and returns the data updated in the database.
-   * @param {TimeblockUpdateManyAndReturnArgs} args - Arguments to update many Timeblocks.
+   * Update zero or more TimeBlocks and returns the data updated in the database.
+   * @param {TimeBlockUpdateManyAndReturnArgs} args - Arguments to update many TimeBlocks.
    * @example
-   * // Update many Timeblocks
-   * const timeblock = await prisma.timeblock.updateManyAndReturn({
+   * // Update many TimeBlocks
+   * const timeBlock = await prisma.timeBlock.updateManyAndReturn({
    *   where: {
    *     // ... provide filter here
    *   },
@@ -750,8 +876,8 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   ]
    * })
    * 
-   * // Update zero or more Timeblocks and only return the `id`
-   * const timeblockWithIdOnly = await prisma.timeblock.updateManyAndReturn({
+   * // Update zero or more TimeBlocks and only return the `id`
+   * const timeBlockWithIdOnly = await prisma.timeBlock.updateManyAndReturn({
    *   select: { id: true },
    *   where: {
    *     // ... provide filter here
@@ -764,56 +890,56 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * Read more here: https://pris.ly/d/null-undefined
    * 
    */
-  updateManyAndReturn<T extends TimeblockUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, TimeblockUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+  updateManyAndReturn<T extends TimeBlockUpdateManyAndReturnArgs>(args: Prisma.SelectSubset<T, TimeBlockUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
   /**
-   * Create or update one Timeblock.
-   * @param {TimeblockUpsertArgs} args - Arguments to update or create a Timeblock.
+   * Create or update one TimeBlock.
+   * @param {TimeBlockUpsertArgs} args - Arguments to update or create a TimeBlock.
    * @example
-   * // Update or create a Timeblock
-   * const timeblock = await prisma.timeblock.upsert({
+   * // Update or create a TimeBlock
+   * const timeBlock = await prisma.timeBlock.upsert({
    *   create: {
-   *     // ... data to create a Timeblock
+   *     // ... data to create a TimeBlock
    *   },
    *   update: {
    *     // ... in case it already exists, update
    *   },
    *   where: {
-   *     // ... the filter for the Timeblock we want to update
+   *     // ... the filter for the TimeBlock we want to update
    *   }
    * })
    */
-  upsert<T extends TimeblockUpsertArgs>(args: Prisma.SelectSubset<T, TimeblockUpsertArgs<ExtArgs>>): Prisma.Prisma__TimeblockClient<runtime.Types.Result.GetResult<Prisma.$TimeblockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+  upsert<T extends TimeBlockUpsertArgs>(args: Prisma.SelectSubset<T, TimeBlockUpsertArgs<ExtArgs>>): Prisma.Prisma__TimeBlockClient<runtime.Types.Result.GetResult<Prisma.$TimeBlockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
   /**
-   * Count the number of Timeblocks.
+   * Count the number of TimeBlocks.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {TimeblockCountArgs} args - Arguments to filter Timeblocks to count.
+   * @param {TimeBlockCountArgs} args - Arguments to filter TimeBlocks to count.
    * @example
-   * // Count the number of Timeblocks
-   * const count = await prisma.timeblock.count({
+   * // Count the number of TimeBlocks
+   * const count = await prisma.timeBlock.count({
    *   where: {
-   *     // ... the filter for the Timeblocks we want to count
+   *     // ... the filter for the TimeBlocks we want to count
    *   }
    * })
   **/
-  count<T extends TimeblockCountArgs>(
-    args?: Prisma.Subset<T, TimeblockCountArgs>,
+  count<T extends TimeBlockCountArgs>(
+    args?: Prisma.Subset<T, TimeBlockCountArgs>,
   ): Prisma.PrismaPromise<
     T extends runtime.Types.Utils.Record<'select', any>
       ? T['select'] extends true
         ? number
-        : Prisma.GetScalarType<T['select'], TimeblockCountAggregateOutputType>
+        : Prisma.GetScalarType<T['select'], TimeBlockCountAggregateOutputType>
       : number
   >
 
   /**
-   * Allows you to perform aggregations operations on a Timeblock.
+   * Allows you to perform aggregations operations on a TimeBlock.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {TimeblockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+   * @param {TimeBlockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
    * @example
    * // Ordered by age ascending
    * // Where email contains prisma.io
@@ -833,13 +959,13 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    *   take: 10,
    * })
   **/
-  aggregate<T extends TimeblockAggregateArgs>(args: Prisma.Subset<T, TimeblockAggregateArgs>): Prisma.PrismaPromise<GetTimeblockAggregateType<T>>
+  aggregate<T extends TimeBlockAggregateArgs>(args: Prisma.Subset<T, TimeBlockAggregateArgs>): Prisma.PrismaPromise<GetTimeBlockAggregateType<T>>
 
   /**
-   * Group by Timeblock.
+   * Group by TimeBlock.
    * Note, that providing `undefined` is treated as the value not being there.
    * Read more here: https://pris.ly/d/null-undefined
-   * @param {TimeblockGroupByArgs} args - Group by arguments.
+   * @param {TimeBlockGroupByArgs} args - Group by arguments.
    * @example
    * // Group by city, order by createdAt, get count
    * const result = await prisma.user.groupBy({
@@ -854,14 +980,14 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
    * 
   **/
   groupBy<
-    T extends TimeblockGroupByArgs,
+    T extends TimeBlockGroupByArgs,
     HasSelectOrTake extends Prisma.Or<
       Prisma.Extends<'skip', Prisma.Keys<T>>,
       Prisma.Extends<'take', Prisma.Keys<T>>
     >,
     OrderByArg extends Prisma.True extends HasSelectOrTake
-      ? { orderBy: TimeblockGroupByArgs['orderBy'] }
-      : { orderBy?: TimeblockGroupByArgs['orderBy'] },
+      ? { orderBy: TimeBlockGroupByArgs['orderBy'] }
+      : { orderBy?: TimeBlockGroupByArgs['orderBy'] },
     OrderFields extends Prisma.ExcludeUnderscoreKeys<Prisma.Keys<Prisma.MaybeTupleToUnion<T['orderBy']>>>,
     ByFields extends Prisma.MaybeTupleToUnion<T['by']>,
     ByValid extends Prisma.Has<ByFields, OrderFields>,
@@ -910,20 +1036,20 @@ export interface TimeblockDelegate<ExtArgs extends runtime.Types.Extensions.Inte
           ? never
           : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
       }[OrderFields]
-  >(args: Prisma.SubsetIntersection<T, TimeblockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTimeblockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  >(args: Prisma.SubsetIntersection<T, TimeBlockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTimeBlockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
 /**
- * Fields of the Timeblock model
+ * Fields of the TimeBlock model
  */
-readonly fields: TimeblockFieldRefs;
+readonly fields: TimeBlockFieldRefs;
 }
 
 /**
- * The delegate class that acts as a "Promise-like" for Timeblock.
+ * The delegate class that acts as a "Promise-like" for TimeBlock.
  * Why is this prefixed with `Prisma__`?
  * Because we want to prevent naming conflicts as mentioned in
  * https://github.com/prisma/prisma-client-js/issues/707
  */
-export interface Prisma__TimeblockClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+export interface Prisma__TimeBlockClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -952,429 +1078,431 @@ export interface Prisma__TimeblockClient<T, Null = never, ExtArgs extends runtim
 
 
 /**
- * Fields of the Timeblock model
+ * Fields of the TimeBlock model
  */
-export interface TimeblockFieldRefs {
-  readonly id: Prisma.FieldRef<"Timeblock", 'String'>
-  readonly createdAt: Prisma.FieldRef<"Timeblock", 'DateTime'>
-  readonly updatedAt: Prisma.FieldRef<"Timeblock", 'DateTime'>
-  readonly name: Prisma.FieldRef<"Timeblock", 'String'>
-  readonly color: Prisma.FieldRef<"Timeblock", 'String'>
-  readonly userId: Prisma.FieldRef<"Timeblock", 'String'>
+export interface TimeBlockFieldRefs {
+  readonly id: Prisma.FieldRef<"TimeBlock", 'String'>
+  readonly createdAt: Prisma.FieldRef<"TimeBlock", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"TimeBlock", 'DateTime'>
+  readonly name: Prisma.FieldRef<"TimeBlock", 'String'>
+  readonly color: Prisma.FieldRef<"TimeBlock", 'String'>
+  readonly duration: Prisma.FieldRef<"TimeBlock", 'Int'>
+  readonly order: Prisma.FieldRef<"TimeBlock", 'Int'>
+  readonly userId: Prisma.FieldRef<"TimeBlock", 'String'>
 }
     
 
 // Custom InputTypes
 /**
- * Timeblock findUnique
+ * TimeBlock findUnique
  */
-export type TimeblockFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockFindUniqueArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * Filter, which Timeblock to fetch.
+   * Filter, which TimeBlock to fetch.
    */
-  where: Prisma.TimeblockWhereUniqueInput
+  where: Prisma.TimeBlockWhereUniqueInput
 }
 
 /**
- * Timeblock findUniqueOrThrow
+ * TimeBlock findUniqueOrThrow
  */
-export type TimeblockFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * Filter, which Timeblock to fetch.
+   * Filter, which TimeBlock to fetch.
    */
-  where: Prisma.TimeblockWhereUniqueInput
+  where: Prisma.TimeBlockWhereUniqueInput
 }
 
 /**
- * Timeblock findFirst
+ * TimeBlock findFirst
  */
-export type TimeblockFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockFindFirstArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * Filter, which Timeblock to fetch.
+   * Filter, which TimeBlock to fetch.
    */
-  where?: Prisma.TimeblockWhereInput
+  where?: Prisma.TimeBlockWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Timeblocks to fetch.
+   * Determine the order of TimeBlocks to fetch.
    */
-  orderBy?: Prisma.TimeblockOrderByWithRelationInput | Prisma.TimeblockOrderByWithRelationInput[]
+  orderBy?: Prisma.TimeBlockOrderByWithRelationInput | Prisma.TimeBlockOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for Timeblocks.
+   * Sets the position for searching for TimeBlocks.
    */
-  cursor?: Prisma.TimeblockWhereUniqueInput
+  cursor?: Prisma.TimeBlockWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Timeblocks from the position of the cursor.
+   * Take `±n` TimeBlocks from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Timeblocks.
+   * Skip the first `n` TimeBlocks.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Timeblocks.
+   * Filter by unique combinations of TimeBlocks.
    */
-  distinct?: Prisma.TimeblockScalarFieldEnum | Prisma.TimeblockScalarFieldEnum[]
+  distinct?: Prisma.TimeBlockScalarFieldEnum | Prisma.TimeBlockScalarFieldEnum[]
 }
 
 /**
- * Timeblock findFirstOrThrow
+ * TimeBlock findFirstOrThrow
  */
-export type TimeblockFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * Filter, which Timeblock to fetch.
+   * Filter, which TimeBlock to fetch.
    */
-  where?: Prisma.TimeblockWhereInput
+  where?: Prisma.TimeBlockWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Timeblocks to fetch.
+   * Determine the order of TimeBlocks to fetch.
    */
-  orderBy?: Prisma.TimeblockOrderByWithRelationInput | Prisma.TimeblockOrderByWithRelationInput[]
+  orderBy?: Prisma.TimeBlockOrderByWithRelationInput | Prisma.TimeBlockOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for searching for Timeblocks.
+   * Sets the position for searching for TimeBlocks.
    */
-  cursor?: Prisma.TimeblockWhereUniqueInput
+  cursor?: Prisma.TimeBlockWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Timeblocks from the position of the cursor.
+   * Take `±n` TimeBlocks from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Timeblocks.
+   * Skip the first `n` TimeBlocks.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Timeblocks.
+   * Filter by unique combinations of TimeBlocks.
    */
-  distinct?: Prisma.TimeblockScalarFieldEnum | Prisma.TimeblockScalarFieldEnum[]
+  distinct?: Prisma.TimeBlockScalarFieldEnum | Prisma.TimeBlockScalarFieldEnum[]
 }
 
 /**
- * Timeblock findMany
+ * TimeBlock findMany
  */
-export type TimeblockFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockFindManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * Filter, which Timeblocks to fetch.
+   * Filter, which TimeBlocks to fetch.
    */
-  where?: Prisma.TimeblockWhereInput
+  where?: Prisma.TimeBlockWhereInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
    * 
-   * Determine the order of Timeblocks to fetch.
+   * Determine the order of TimeBlocks to fetch.
    */
-  orderBy?: Prisma.TimeblockOrderByWithRelationInput | Prisma.TimeblockOrderByWithRelationInput[]
+  orderBy?: Prisma.TimeBlockOrderByWithRelationInput | Prisma.TimeBlockOrderByWithRelationInput[]
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
    * 
-   * Sets the position for listing Timeblocks.
+   * Sets the position for listing TimeBlocks.
    */
-  cursor?: Prisma.TimeblockWhereUniqueInput
+  cursor?: Prisma.TimeBlockWhereUniqueInput
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Take `±n` Timeblocks from the position of the cursor.
+   * Take `±n` TimeBlocks from the position of the cursor.
    */
   take?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
    * 
-   * Skip the first `n` Timeblocks.
+   * Skip the first `n` TimeBlocks.
    */
   skip?: number
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
    * 
-   * Filter by unique combinations of Timeblocks.
+   * Filter by unique combinations of TimeBlocks.
    */
-  distinct?: Prisma.TimeblockScalarFieldEnum | Prisma.TimeblockScalarFieldEnum[]
+  distinct?: Prisma.TimeBlockScalarFieldEnum | Prisma.TimeBlockScalarFieldEnum[]
 }
 
 /**
- * Timeblock create
+ * TimeBlock create
  */
-export type TimeblockCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockCreateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * The data needed to create a Timeblock.
+   * The data needed to create a TimeBlock.
    */
-  data: Prisma.XOR<Prisma.TimeblockCreateInput, Prisma.TimeblockUncheckedCreateInput>
+  data: Prisma.XOR<Prisma.TimeBlockCreateInput, Prisma.TimeBlockUncheckedCreateInput>
 }
 
 /**
- * Timeblock createMany
+ * TimeBlock createMany
  */
-export type TimeblockCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockCreateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to create many Timeblocks.
+   * The data used to create many TimeBlocks.
    */
-  data: Prisma.TimeblockCreateManyInput | Prisma.TimeblockCreateManyInput[]
+  data: Prisma.TimeBlockCreateManyInput | Prisma.TimeBlockCreateManyInput[]
   skipDuplicates?: boolean
 }
 
 /**
- * Timeblock createManyAndReturn
+ * TimeBlock createManyAndReturn
  */
-export type TimeblockCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelectCreateManyAndReturn<ExtArgs> | null
+  select?: Prisma.TimeBlockSelectCreateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
-   * The data used to create many Timeblocks.
+   * The data used to create many TimeBlocks.
    */
-  data: Prisma.TimeblockCreateManyInput | Prisma.TimeblockCreateManyInput[]
+  data: Prisma.TimeBlockCreateManyInput | Prisma.TimeBlockCreateManyInput[]
   skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockIncludeCreateManyAndReturn<ExtArgs> | null
+  include?: Prisma.TimeBlockIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
- * Timeblock update
+ * TimeBlock update
  */
-export type TimeblockUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockUpdateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * The data needed to update a Timeblock.
+   * The data needed to update a TimeBlock.
    */
-  data: Prisma.XOR<Prisma.TimeblockUpdateInput, Prisma.TimeblockUncheckedUpdateInput>
+  data: Prisma.XOR<Prisma.TimeBlockUpdateInput, Prisma.TimeBlockUncheckedUpdateInput>
   /**
-   * Choose, which Timeblock to update.
+   * Choose, which TimeBlock to update.
    */
-  where: Prisma.TimeblockWhereUniqueInput
+  where: Prisma.TimeBlockWhereUniqueInput
 }
 
 /**
- * Timeblock updateMany
+ * TimeBlock updateMany
  */
-export type TimeblockUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockUpdateManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * The data used to update Timeblocks.
+   * The data used to update TimeBlocks.
    */
-  data: Prisma.XOR<Prisma.TimeblockUpdateManyMutationInput, Prisma.TimeblockUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.TimeBlockUpdateManyMutationInput, Prisma.TimeBlockUncheckedUpdateManyInput>
   /**
-   * Filter which Timeblocks to update
+   * Filter which TimeBlocks to update
    */
-  where?: Prisma.TimeblockWhereInput
+  where?: Prisma.TimeBlockWhereInput
   /**
-   * Limit how many Timeblocks to update.
+   * Limit how many TimeBlocks to update.
    */
   limit?: number
 }
 
 /**
- * Timeblock updateManyAndReturn
+ * TimeBlock updateManyAndReturn
  */
-export type TimeblockUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelectUpdateManyAndReturn<ExtArgs> | null
+  select?: Prisma.TimeBlockSelectUpdateManyAndReturn<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
-   * The data used to update Timeblocks.
+   * The data used to update TimeBlocks.
    */
-  data: Prisma.XOR<Prisma.TimeblockUpdateManyMutationInput, Prisma.TimeblockUncheckedUpdateManyInput>
+  data: Prisma.XOR<Prisma.TimeBlockUpdateManyMutationInput, Prisma.TimeBlockUncheckedUpdateManyInput>
   /**
-   * Filter which Timeblocks to update
+   * Filter which TimeBlocks to update
    */
-  where?: Prisma.TimeblockWhereInput
+  where?: Prisma.TimeBlockWhereInput
   /**
-   * Limit how many Timeblocks to update.
+   * Limit how many TimeBlocks to update.
    */
   limit?: number
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockIncludeUpdateManyAndReturn<ExtArgs> | null
+  include?: Prisma.TimeBlockIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
- * Timeblock upsert
+ * TimeBlock upsert
  */
-export type TimeblockUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockUpsertArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * The filter to search for the Timeblock to update in case it exists.
+   * The filter to search for the TimeBlock to update in case it exists.
    */
-  where: Prisma.TimeblockWhereUniqueInput
+  where: Prisma.TimeBlockWhereUniqueInput
   /**
-   * In case the Timeblock found by the `where` argument doesn't exist, create a new Timeblock with this data.
+   * In case the TimeBlock found by the `where` argument doesn't exist, create a new TimeBlock with this data.
    */
-  create: Prisma.XOR<Prisma.TimeblockCreateInput, Prisma.TimeblockUncheckedCreateInput>
+  create: Prisma.XOR<Prisma.TimeBlockCreateInput, Prisma.TimeBlockUncheckedCreateInput>
   /**
-   * In case the Timeblock was found with the provided `where` argument, update it with this data.
+   * In case the TimeBlock was found with the provided `where` argument, update it with this data.
    */
-  update: Prisma.XOR<Prisma.TimeblockUpdateInput, Prisma.TimeblockUncheckedUpdateInput>
+  update: Prisma.XOR<Prisma.TimeBlockUpdateInput, Prisma.TimeBlockUncheckedUpdateInput>
 }
 
 /**
- * Timeblock delete
+ * TimeBlock delete
  */
-export type TimeblockDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockDeleteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
   /**
-   * Filter which Timeblock to delete.
+   * Filter which TimeBlock to delete.
    */
-  where: Prisma.TimeblockWhereUniqueInput
+  where: Prisma.TimeBlockWhereUniqueInput
 }
 
 /**
- * Timeblock deleteMany
+ * TimeBlock deleteMany
  */
-export type TimeblockDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Filter which Timeblocks to delete
+   * Filter which TimeBlocks to delete
    */
-  where?: Prisma.TimeblockWhereInput
+  where?: Prisma.TimeBlockWhereInput
   /**
-   * Limit how many Timeblocks to delete.
+   * Limit how many TimeBlocks to delete.
    */
   limit?: number
 }
 
 /**
- * Timeblock without action
+ * TimeBlock without action
  */
-export type TimeblockDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TimeBlockDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Timeblock
+   * Select specific fields to fetch from the TimeBlock
    */
-  select?: Prisma.TimeblockSelect<ExtArgs> | null
+  select?: Prisma.TimeBlockSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Timeblock
+   * Omit specific fields from the TimeBlock
    */
-  omit?: Prisma.TimeblockOmit<ExtArgs> | null
+  omit?: Prisma.TimeBlockOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.TimeblockInclude<ExtArgs> | null
+  include?: Prisma.TimeBlockInclude<ExtArgs> | null
 }

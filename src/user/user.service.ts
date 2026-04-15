@@ -13,7 +13,7 @@ export class UserService {
 	async getById(id: string) {
 		return this.prisma.user.findUnique({
 			where: { id },
-			include: { task: true }
+			include: { tasks: true }
 		})
 	}
 
@@ -59,7 +59,7 @@ export class UserService {
 			throw new NotFoundException(`User with id ${id} not found`)
 		}
 
-		const totalTasks = profile.task.length
+		const totalTasks = profile.tasks.length
 
 		const completedTasks = await this.prisma.task.count({
 			where: {

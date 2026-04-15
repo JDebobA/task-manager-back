@@ -8,70 +8,79 @@ datasource db {
   provider = "postgresql"
 }
 
-//Модель юзера
 model User {
-  id             String            @id @default(uuid())
-  createdAt      DateTime          @default(now()) @map("created_at")
-  updatedAt      DateTime          @updatedAt @map("updated_at")
-  email          String            @unique
-  name           String?
-  password       String
-  breakInterval  Int               @default(5) @map("break_interval")
-  intervalsCount Int               @default(3) @map("interval_count")
-  workInterval   Int               @default(30) @map("work_interval")
-  task           Task[]
-  session        PomodoroSession[]
-  timeBlock      Timeblock[]
+  id                String            @id @default(cuid())
+  createdAt         DateTime          @default(now()) @map("created_at")
+  updatedAt         DateTime          @updatedAt @map("updated_at")
+  email             String            @unique
+  name              String?
+  password          String
+  workInterval      Int?              @default(50) @map("work_interval")
+  breakInterval     Int?              @default(10) @map("break_interval")
+  intervalCount     Int?              @default(7) @map("intervals_count")
+  PomodoroRound     PomodoroRound[]
+  promodorosessions PomodoroSession[]
+  tasks             Task[]
+  timeblocks        TimeBlock[]
+
+  @@map("user")
 }
 
-//Модель задач
 model Task {
-  id          String   @id @default(uuid())
-  createdAt   DateTime @default(now()) @map("created_at")
-  updatedAt   DateTime @updatedAt @map("updated_at")
-  name        String?
-  isCompleted Boolean  @map("is_completed")
-  userId      String   @map("user_id")
-  user        User     @relation(fields: [userId], references: [id])
-  priority    Priority
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  name        String
+  priority    Priority?
+  isCompleted Boolean?  @default(false) @map("is_completed")
+  userId      String    @map("user_id")
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@map("task1")
+}
+
+model TimeBlock {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  name      String
+  color     String?
+  duration  Int
+  order     Int      @default(1)
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+
+  @@map("time_block")
+}
+
+model PomodoroSession {
+  id          String          @id @default(cuid())
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+  isCompleted Boolean?        @default(false) @map("is_completed")
+  userId      String          @map("user_id")
+  rounds      PomodoroRound[]
+  user        User            @relation(fields: [userId], references: [id])
+
+  @@map("pomodoro_session")
+}
+
+model PomodoroRound {
+  id                String          @id @default(cuid())
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+  totalSeconds      Int             @default(0) @map("total_seconds")
+  isComplete        Boolean?        @default(false) @map("is_complete")
+  PomodoroSessionId String          @map("pomodoro_session_id")
+  userId            String?
+  PomodoroSession   PomodoroSession @relation(fields: [PomodoroSessionId], references: [id], onDelete: Cascade)
+  User              User?           @relation(fields: [userId], references: [id])
+
+  @@map("pomodoro_round")
 }
 
 enum Priority {
   low
   medium
   high
-  highest
-}
-
-//Модель сессии
-model PomodoroSession {
-  id          String          @id @default(uuid())
-  createdAt   DateTime        @default(now()) @map("created_at")
-  updatedAt   DateTime        @updatedAt @map("updated_at")
-  isComplited Boolean         @map("is_complited")
-  user        User?           @relation(fields: [userId], references: [id])
-  userId      String?         @map("user_id")
-  rounds      PomodoroRound[]
-}
-
-//Модель Раунда
-model PomodoroRound {
-  id                String          @id @default(uuid())
-  createdAt         DateTime        @default(now()) @map("created_at")
-  updatedAt         DateTime        @updatedAt @map("updated_at")
-  allMinutes        Int             @map("all_minutes")
-  completed         Boolean
-  pomodoroSessionId String          @map("pomodoro_session_id")
-  pomodoroSession   PomodoroSession @relation(fields: [pomodoroSessionId], references: [id])
-}
-
-//Модель временного блока
-model Timeblock {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
-  name      String
-  color     String   @default("#a03a3a")
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
 }

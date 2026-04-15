@@ -2,7 +2,10 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 
 import { AuthModule } from './auth/auth.module'
+import { PomodoroModule } from './pomodoro/pomodoro.module'
 import { PrismaModule } from './prisma/prisma.module'
+import { TaskModule } from './task/task.module'
+import { TimeBlockModule } from './time-block/time-block.module'
 import { UserModule } from './user/user.module'
 
 @Module({
@@ -12,7 +15,10 @@ import { UserModule } from './user/user.module'
 		}),
 		UserModule,
 		PrismaModule,
-		AuthModule
+		AuthModule,
+		PomodoroModule,
+		TaskModule,
+		TimeBlockModule
 	]
 })
 export class AppModule {}

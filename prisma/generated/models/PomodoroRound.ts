@@ -27,75 +27,81 @@ export type AggregatePomodoroRound = {
 }
 
 export type PomodoroRoundAvgAggregateOutputType = {
-  allMinutes: number | null
+  totalSeconds: number | null
 }
 
 export type PomodoroRoundSumAggregateOutputType = {
-  allMinutes: number | null
+  totalSeconds: number | null
 }
 
 export type PomodoroRoundMinAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  allMinutes: number | null
-  completed: boolean | null
-  pomodoroSessionId: string | null
+  totalSeconds: number | null
+  isComplete: boolean | null
+  PomodoroSessionId: string | null
+  userId: string | null
 }
 
 export type PomodoroRoundMaxAggregateOutputType = {
   id: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  allMinutes: number | null
-  completed: boolean | null
-  pomodoroSessionId: string | null
+  totalSeconds: number | null
+  isComplete: boolean | null
+  PomodoroSessionId: string | null
+  userId: string | null
 }
 
 export type PomodoroRoundCountAggregateOutputType = {
   id: number
   createdAt: number
   updatedAt: number
-  allMinutes: number
-  completed: number
-  pomodoroSessionId: number
+  totalSeconds: number
+  isComplete: number
+  PomodoroSessionId: number
+  userId: number
   _all: number
 }
 
 
 export type PomodoroRoundAvgAggregateInputType = {
-  allMinutes?: true
+  totalSeconds?: true
 }
 
 export type PomodoroRoundSumAggregateInputType = {
-  allMinutes?: true
+  totalSeconds?: true
 }
 
 export type PomodoroRoundMinAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
-  allMinutes?: true
-  completed?: true
-  pomodoroSessionId?: true
+  totalSeconds?: true
+  isComplete?: true
+  PomodoroSessionId?: true
+  userId?: true
 }
 
 export type PomodoroRoundMaxAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
-  allMinutes?: true
-  completed?: true
-  pomodoroSessionId?: true
+  totalSeconds?: true
+  isComplete?: true
+  PomodoroSessionId?: true
+  userId?: true
 }
 
 export type PomodoroRoundCountAggregateInputType = {
   id?: true
   createdAt?: true
   updatedAt?: true
-  allMinutes?: true
-  completed?: true
-  pomodoroSessionId?: true
+  totalSeconds?: true
+  isComplete?: true
+  PomodoroSessionId?: true
+  userId?: true
   _all?: true
 }
 
@@ -189,9 +195,10 @@ export type PomodoroRoundGroupByOutputType = {
   id: string
   createdAt: Date
   updatedAt: Date
-  allMinutes: number
-  completed: boolean
-  pomodoroSessionId: string
+  totalSeconds: number
+  isComplete: boolean | null
+  PomodoroSessionId: string
+  userId: string | null
   _count: PomodoroRoundCountAggregateOutputType | null
   _avg: PomodoroRoundAvgAggregateOutputType | null
   _sum: PomodoroRoundSumAggregateOutputType | null
@@ -221,20 +228,24 @@ export type PomodoroRoundWhereInput = {
   id?: Prisma.StringFilter<"PomodoroRound"> | string
   createdAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
-  allMinutes?: Prisma.IntFilter<"PomodoroRound"> | number
-  completed?: Prisma.BoolFilter<"PomodoroRound"> | boolean
-  pomodoroSessionId?: Prisma.StringFilter<"PomodoroRound"> | string
-  pomodoroSession?: Prisma.XOR<Prisma.PomodoroSessionScalarRelationFilter, Prisma.PomodoroSessionWhereInput>
+  totalSeconds?: Prisma.IntFilter<"PomodoroRound"> | number
+  isComplete?: Prisma.BoolNullableFilter<"PomodoroRound"> | boolean | null
+  PomodoroSessionId?: Prisma.StringFilter<"PomodoroRound"> | string
+  userId?: Prisma.StringNullableFilter<"PomodoroRound"> | string | null
+  PomodoroSession?: Prisma.XOR<Prisma.PomodoroSessionScalarRelationFilter, Prisma.PomodoroSessionWhereInput>
+  User?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type PomodoroRoundOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  allMinutes?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  pomodoroSessionId?: Prisma.SortOrder
-  pomodoroSession?: Prisma.PomodoroSessionOrderByWithRelationInput
+  totalSeconds?: Prisma.SortOrder
+  isComplete?: Prisma.SortOrderInput | Prisma.SortOrder
+  PomodoroSessionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
+  PomodoroSession?: Prisma.PomodoroSessionOrderByWithRelationInput
+  User?: Prisma.UserOrderByWithRelationInput
 }
 
 export type PomodoroRoundWhereUniqueInput = Prisma.AtLeast<{
@@ -244,19 +255,22 @@ export type PomodoroRoundWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PomodoroRoundWhereInput | Prisma.PomodoroRoundWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
-  allMinutes?: Prisma.IntFilter<"PomodoroRound"> | number
-  completed?: Prisma.BoolFilter<"PomodoroRound"> | boolean
-  pomodoroSessionId?: Prisma.StringFilter<"PomodoroRound"> | string
-  pomodoroSession?: Prisma.XOR<Prisma.PomodoroSessionScalarRelationFilter, Prisma.PomodoroSessionWhereInput>
+  totalSeconds?: Prisma.IntFilter<"PomodoroRound"> | number
+  isComplete?: Prisma.BoolNullableFilter<"PomodoroRound"> | boolean | null
+  PomodoroSessionId?: Prisma.StringFilter<"PomodoroRound"> | string
+  userId?: Prisma.StringNullableFilter<"PomodoroRound"> | string | null
+  PomodoroSession?: Prisma.XOR<Prisma.PomodoroSessionScalarRelationFilter, Prisma.PomodoroSessionWhereInput>
+  User?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id">
 
 export type PomodoroRoundOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  allMinutes?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  pomodoroSessionId?: Prisma.SortOrder
+  totalSeconds?: Prisma.SortOrder
+  isComplete?: Prisma.SortOrderInput | Prisma.SortOrder
+  PomodoroSessionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PomodoroRoundCountOrderByAggregateInput
   _avg?: Prisma.PomodoroRoundAvgOrderByAggregateInput
   _max?: Prisma.PomodoroRoundMaxOrderByAggregateInput
@@ -271,71 +285,78 @@ export type PomodoroRoundScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"PomodoroRound"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PomodoroRound"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PomodoroRound"> | Date | string
-  allMinutes?: Prisma.IntWithAggregatesFilter<"PomodoroRound"> | number
-  completed?: Prisma.BoolWithAggregatesFilter<"PomodoroRound"> | boolean
-  pomodoroSessionId?: Prisma.StringWithAggregatesFilter<"PomodoroRound"> | string
+  totalSeconds?: Prisma.IntWithAggregatesFilter<"PomodoroRound"> | number
+  isComplete?: Prisma.BoolNullableWithAggregatesFilter<"PomodoroRound"> | boolean | null
+  PomodoroSessionId?: Prisma.StringWithAggregatesFilter<"PomodoroRound"> | string
+  userId?: Prisma.StringNullableWithAggregatesFilter<"PomodoroRound"> | string | null
 }
 
 export type PomodoroRoundCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  allMinutes: number
-  completed: boolean
-  pomodoroSession: Prisma.PomodoroSessionCreateNestedOneWithoutRoundsInput
+  totalSeconds?: number
+  isComplete?: boolean | null
+  PomodoroSession: Prisma.PomodoroSessionCreateNestedOneWithoutRoundsInput
+  User?: Prisma.UserCreateNestedOneWithoutPomodoroRoundInput
 }
 
 export type PomodoroRoundUncheckedCreateInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  allMinutes: number
-  completed: boolean
-  pomodoroSessionId: string
+  totalSeconds?: number
+  isComplete?: boolean | null
+  PomodoroSessionId: string
+  userId?: string | null
 }
 
 export type PomodoroRoundUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allMinutes?: Prisma.IntFieldUpdateOperationsInput | number
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  pomodoroSession?: Prisma.PomodoroSessionUpdateOneRequiredWithoutRoundsNestedInput
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  PomodoroSession?: Prisma.PomodoroSessionUpdateOneRequiredWithoutRoundsNestedInput
+  User?: Prisma.UserUpdateOneWithoutPomodoroRoundNestedInput
 }
 
 export type PomodoroRoundUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allMinutes?: Prisma.IntFieldUpdateOperationsInput | number
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  pomodoroSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  PomodoroSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PomodoroRoundCreateManyInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  allMinutes: number
-  completed: boolean
-  pomodoroSessionId: string
+  totalSeconds?: number
+  isComplete?: boolean | null
+  PomodoroSessionId: string
+  userId?: string | null
 }
 
 export type PomodoroRoundUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allMinutes?: Prisma.IntFieldUpdateOperationsInput | number
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
 }
 
 export type PomodoroRoundUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allMinutes?: Prisma.IntFieldUpdateOperationsInput | number
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  pomodoroSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  PomodoroSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PomodoroRoundListRelationFilter = {
@@ -352,35 +373,80 @@ export type PomodoroRoundCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  allMinutes?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  pomodoroSessionId?: Prisma.SortOrder
+  totalSeconds?: Prisma.SortOrder
+  isComplete?: Prisma.SortOrder
+  PomodoroSessionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type PomodoroRoundAvgOrderByAggregateInput = {
-  allMinutes?: Prisma.SortOrder
+  totalSeconds?: Prisma.SortOrder
 }
 
 export type PomodoroRoundMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  allMinutes?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  pomodoroSessionId?: Prisma.SortOrder
+  totalSeconds?: Prisma.SortOrder
+  isComplete?: Prisma.SortOrder
+  PomodoroSessionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type PomodoroRoundMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  allMinutes?: Prisma.SortOrder
-  completed?: Prisma.SortOrder
-  pomodoroSessionId?: Prisma.SortOrder
+  totalSeconds?: Prisma.SortOrder
+  isComplete?: Prisma.SortOrder
+  PomodoroSessionId?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type PomodoroRoundSumOrderByAggregateInput = {
-  allMinutes?: Prisma.SortOrder
+  totalSeconds?: Prisma.SortOrder
+}
+
+export type PomodoroRoundCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.PomodoroRoundCreateWithoutUserInput, Prisma.PomodoroRoundUncheckedCreateWithoutUserInput> | Prisma.PomodoroRoundCreateWithoutUserInput[] | Prisma.PomodoroRoundUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PomodoroRoundCreateOrConnectWithoutUserInput | Prisma.PomodoroRoundCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.PomodoroRoundCreateManyUserInputEnvelope
+  connect?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+}
+
+export type PomodoroRoundUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.PomodoroRoundCreateWithoutUserInput, Prisma.PomodoroRoundUncheckedCreateWithoutUserInput> | Prisma.PomodoroRoundCreateWithoutUserInput[] | Prisma.PomodoroRoundUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PomodoroRoundCreateOrConnectWithoutUserInput | Prisma.PomodoroRoundCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.PomodoroRoundCreateManyUserInputEnvelope
+  connect?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+}
+
+export type PomodoroRoundUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.PomodoroRoundCreateWithoutUserInput, Prisma.PomodoroRoundUncheckedCreateWithoutUserInput> | Prisma.PomodoroRoundCreateWithoutUserInput[] | Prisma.PomodoroRoundUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PomodoroRoundCreateOrConnectWithoutUserInput | Prisma.PomodoroRoundCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.PomodoroRoundUpsertWithWhereUniqueWithoutUserInput | Prisma.PomodoroRoundUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.PomodoroRoundCreateManyUserInputEnvelope
+  set?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  disconnect?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  delete?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  connect?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  update?: Prisma.PomodoroRoundUpdateWithWhereUniqueWithoutUserInput | Prisma.PomodoroRoundUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.PomodoroRoundUpdateManyWithWhereWithoutUserInput | Prisma.PomodoroRoundUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.PomodoroRoundScalarWhereInput | Prisma.PomodoroRoundScalarWhereInput[]
+}
+
+export type PomodoroRoundUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.PomodoroRoundCreateWithoutUserInput, Prisma.PomodoroRoundUncheckedCreateWithoutUserInput> | Prisma.PomodoroRoundCreateWithoutUserInput[] | Prisma.PomodoroRoundUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PomodoroRoundCreateOrConnectWithoutUserInput | Prisma.PomodoroRoundCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.PomodoroRoundUpsertWithWhereUniqueWithoutUserInput | Prisma.PomodoroRoundUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.PomodoroRoundCreateManyUserInputEnvelope
+  set?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  disconnect?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  delete?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  connect?: Prisma.PomodoroRoundWhereUniqueInput | Prisma.PomodoroRoundWhereUniqueInput[]
+  update?: Prisma.PomodoroRoundUpdateWithWhereUniqueWithoutUserInput | Prisma.PomodoroRoundUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.PomodoroRoundUpdateManyWithWhereWithoutUserInput | Prisma.PomodoroRoundUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.PomodoroRoundScalarWhereInput | Prisma.PomodoroRoundScalarWhereInput[]
 }
 
 export type PomodoroRoundCreateNestedManyWithoutPomodoroSessionInput = {
@@ -425,20 +491,79 @@ export type PomodoroRoundUncheckedUpdateManyWithoutPomodoroSessionNestedInput = 
   deleteMany?: Prisma.PomodoroRoundScalarWhereInput | Prisma.PomodoroRoundScalarWhereInput[]
 }
 
+export type PomodoroRoundCreateWithoutUserInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  totalSeconds?: number
+  isComplete?: boolean | null
+  PomodoroSession: Prisma.PomodoroSessionCreateNestedOneWithoutRoundsInput
+}
+
+export type PomodoroRoundUncheckedCreateWithoutUserInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  totalSeconds?: number
+  isComplete?: boolean | null
+  PomodoroSessionId: string
+}
+
+export type PomodoroRoundCreateOrConnectWithoutUserInput = {
+  where: Prisma.PomodoroRoundWhereUniqueInput
+  create: Prisma.XOR<Prisma.PomodoroRoundCreateWithoutUserInput, Prisma.PomodoroRoundUncheckedCreateWithoutUserInput>
+}
+
+export type PomodoroRoundCreateManyUserInputEnvelope = {
+  data: Prisma.PomodoroRoundCreateManyUserInput | Prisma.PomodoroRoundCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type PomodoroRoundUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.PomodoroRoundWhereUniqueInput
+  update: Prisma.XOR<Prisma.PomodoroRoundUpdateWithoutUserInput, Prisma.PomodoroRoundUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.PomodoroRoundCreateWithoutUserInput, Prisma.PomodoroRoundUncheckedCreateWithoutUserInput>
+}
+
+export type PomodoroRoundUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.PomodoroRoundWhereUniqueInput
+  data: Prisma.XOR<Prisma.PomodoroRoundUpdateWithoutUserInput, Prisma.PomodoroRoundUncheckedUpdateWithoutUserInput>
+}
+
+export type PomodoroRoundUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.PomodoroRoundScalarWhereInput
+  data: Prisma.XOR<Prisma.PomodoroRoundUpdateManyMutationInput, Prisma.PomodoroRoundUncheckedUpdateManyWithoutUserInput>
+}
+
+export type PomodoroRoundScalarWhereInput = {
+  AND?: Prisma.PomodoroRoundScalarWhereInput | Prisma.PomodoroRoundScalarWhereInput[]
+  OR?: Prisma.PomodoroRoundScalarWhereInput[]
+  NOT?: Prisma.PomodoroRoundScalarWhereInput | Prisma.PomodoroRoundScalarWhereInput[]
+  id?: Prisma.StringFilter<"PomodoroRound"> | string
+  createdAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
+  totalSeconds?: Prisma.IntFilter<"PomodoroRound"> | number
+  isComplete?: Prisma.BoolNullableFilter<"PomodoroRound"> | boolean | null
+  PomodoroSessionId?: Prisma.StringFilter<"PomodoroRound"> | string
+  userId?: Prisma.StringNullableFilter<"PomodoroRound"> | string | null
+}
+
 export type PomodoroRoundCreateWithoutPomodoroSessionInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  allMinutes: number
-  completed: boolean
+  totalSeconds?: number
+  isComplete?: boolean | null
+  User?: Prisma.UserCreateNestedOneWithoutPomodoroRoundInput
 }
 
 export type PomodoroRoundUncheckedCreateWithoutPomodoroSessionInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  allMinutes: number
-  completed: boolean
+  totalSeconds?: number
+  isComplete?: boolean | null
+  userId?: string | null
 }
 
 export type PomodoroRoundCreateOrConnectWithoutPomodoroSessionInput = {
@@ -467,48 +592,76 @@ export type PomodoroRoundUpdateManyWithWhereWithoutPomodoroSessionInput = {
   data: Prisma.XOR<Prisma.PomodoroRoundUpdateManyMutationInput, Prisma.PomodoroRoundUncheckedUpdateManyWithoutPomodoroSessionInput>
 }
 
-export type PomodoroRoundScalarWhereInput = {
-  AND?: Prisma.PomodoroRoundScalarWhereInput | Prisma.PomodoroRoundScalarWhereInput[]
-  OR?: Prisma.PomodoroRoundScalarWhereInput[]
-  NOT?: Prisma.PomodoroRoundScalarWhereInput | Prisma.PomodoroRoundScalarWhereInput[]
-  id?: Prisma.StringFilter<"PomodoroRound"> | string
-  createdAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PomodoroRound"> | Date | string
-  allMinutes?: Prisma.IntFilter<"PomodoroRound"> | number
-  completed?: Prisma.BoolFilter<"PomodoroRound"> | boolean
-  pomodoroSessionId?: Prisma.StringFilter<"PomodoroRound"> | string
+export type PomodoroRoundCreateManyUserInput = {
+  id?: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  totalSeconds?: number
+  isComplete?: boolean | null
+  PomodoroSessionId: string
+}
+
+export type PomodoroRoundUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  PomodoroSession?: Prisma.PomodoroSessionUpdateOneRequiredWithoutRoundsNestedInput
+}
+
+export type PomodoroRoundUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  PomodoroSessionId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type PomodoroRoundUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  PomodoroSessionId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type PomodoroRoundCreateManyPomodoroSessionInput = {
   id?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  allMinutes: number
-  completed: boolean
+  totalSeconds?: number
+  isComplete?: boolean | null
+  userId?: string | null
 }
 
 export type PomodoroRoundUpdateWithoutPomodoroSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allMinutes?: Prisma.IntFieldUpdateOperationsInput | number
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  User?: Prisma.UserUpdateOneWithoutPomodoroRoundNestedInput
 }
 
 export type PomodoroRoundUncheckedUpdateWithoutPomodoroSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allMinutes?: Prisma.IntFieldUpdateOperationsInput | number
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type PomodoroRoundUncheckedUpdateManyWithoutPomodoroSessionInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  allMinutes?: Prisma.IntFieldUpdateOperationsInput | number
-  completed?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  totalSeconds?: Prisma.IntFieldUpdateOperationsInput | number
+  isComplete?: Prisma.NullableBoolFieldUpdateOperationsInput | boolean | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -517,64 +670,76 @@ export type PomodoroRoundSelect<ExtArgs extends runtime.Types.Extensions.Interna
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  allMinutes?: boolean
-  completed?: boolean
-  pomodoroSessionId?: boolean
-  pomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  totalSeconds?: boolean
+  isComplete?: boolean
+  PomodoroSessionId?: boolean
+  userId?: boolean
+  PomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.PomodoroRound$UserArgs<ExtArgs>
 }, ExtArgs["result"]["pomodoroRound"]>
 
 export type PomodoroRoundSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  allMinutes?: boolean
-  completed?: boolean
-  pomodoroSessionId?: boolean
-  pomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  totalSeconds?: boolean
+  isComplete?: boolean
+  PomodoroSessionId?: boolean
+  userId?: boolean
+  PomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.PomodoroRound$UserArgs<ExtArgs>
 }, ExtArgs["result"]["pomodoroRound"]>
 
 export type PomodoroRoundSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  allMinutes?: boolean
-  completed?: boolean
-  pomodoroSessionId?: boolean
-  pomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  totalSeconds?: boolean
+  isComplete?: boolean
+  PomodoroSessionId?: boolean
+  userId?: boolean
+  PomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.PomodoroRound$UserArgs<ExtArgs>
 }, ExtArgs["result"]["pomodoroRound"]>
 
 export type PomodoroRoundSelectScalar = {
   id?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  allMinutes?: boolean
-  completed?: boolean
-  pomodoroSessionId?: boolean
+  totalSeconds?: boolean
+  isComplete?: boolean
+  PomodoroSessionId?: boolean
+  userId?: boolean
 }
 
-export type PomodoroRoundOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "allMinutes" | "completed" | "pomodoroSessionId", ExtArgs["result"]["pomodoroRound"]>
+export type PomodoroRoundOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "createdAt" | "updatedAt" | "totalSeconds" | "isComplete" | "PomodoroSessionId" | "userId", ExtArgs["result"]["pomodoroRound"]>
 export type PomodoroRoundInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  pomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  PomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.PomodoroRound$UserArgs<ExtArgs>
 }
 export type PomodoroRoundIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  pomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  PomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.PomodoroRound$UserArgs<ExtArgs>
 }
 export type PomodoroRoundIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  pomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  PomodoroSession?: boolean | Prisma.PomodoroSessionDefaultArgs<ExtArgs>
+  User?: boolean | Prisma.PomodoroRound$UserArgs<ExtArgs>
 }
 
 export type $PomodoroRoundPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PomodoroRound"
   objects: {
-    pomodoroSession: Prisma.$PomodoroSessionPayload<ExtArgs>
+    PomodoroSession: Prisma.$PomodoroSessionPayload<ExtArgs>
+    User: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     createdAt: Date
     updatedAt: Date
-    allMinutes: number
-    completed: boolean
-    pomodoroSessionId: string
+    totalSeconds: number
+    isComplete: boolean | null
+    PomodoroSessionId: string
+    userId: string | null
   }, ExtArgs["result"]["pomodoroRound"]>
   composites: {}
 }
@@ -969,7 +1134,8 @@ readonly fields: PomodoroRoundFieldRefs;
  */
 export interface Prisma__PomodoroRoundClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  pomodoroSession<T extends Prisma.PomodoroSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PomodoroSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__PomodoroSessionClient<runtime.Types.Result.GetResult<Prisma.$PomodoroSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  PomodoroSession<T extends Prisma.PomodoroSessionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PomodoroSessionDefaultArgs<ExtArgs>>): Prisma.Prisma__PomodoroSessionClient<runtime.Types.Result.GetResult<Prisma.$PomodoroSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  User<T extends Prisma.PomodoroRound$UserArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PomodoroRound$UserArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1002,9 +1168,10 @@ export interface PomodoroRoundFieldRefs {
   readonly id: Prisma.FieldRef<"PomodoroRound", 'String'>
   readonly createdAt: Prisma.FieldRef<"PomodoroRound", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PomodoroRound", 'DateTime'>
-  readonly allMinutes: Prisma.FieldRef<"PomodoroRound", 'Int'>
-  readonly completed: Prisma.FieldRef<"PomodoroRound", 'Boolean'>
-  readonly pomodoroSessionId: Prisma.FieldRef<"PomodoroRound", 'String'>
+  readonly totalSeconds: Prisma.FieldRef<"PomodoroRound", 'Int'>
+  readonly isComplete: Prisma.FieldRef<"PomodoroRound", 'Boolean'>
+  readonly PomodoroSessionId: Prisma.FieldRef<"PomodoroRound", 'String'>
+  readonly userId: Prisma.FieldRef<"PomodoroRound", 'String'>
 }
     
 
@@ -1403,6 +1570,25 @@ export type PomodoroRoundDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many PomodoroRounds to delete.
    */
   limit?: number
+}
+
+/**
+ * PomodoroRound.User
+ */
+export type PomodoroRound$UserArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

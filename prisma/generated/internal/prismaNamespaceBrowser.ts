@@ -53,9 +53,9 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Task: 'Task',
+  TimeBlock: 'TimeBlock',
   PomodoroSession: 'PomodoroSession',
-  PomodoroRound: 'PomodoroRound',
-  Timeblock: 'Timeblock'
+  PomodoroRound: 'PomodoroRound'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -81,9 +81,9 @@ export const UserScalarFieldEnum = {
   email: 'email',
   name: 'name',
   password: 'password',
+  workInterval: 'workInterval',
   breakInterval: 'breakInterval',
-  intervalsCount: 'intervalsCount',
-  workInterval: 'workInterval'
+  intervalCount: 'intervalCount'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -94,19 +94,33 @@ export const TaskScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   name: 'name',
+  priority: 'priority',
   isCompleted: 'isCompleted',
-  userId: 'userId',
-  priority: 'priority'
+  userId: 'userId'
 } as const
 
 export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const TimeBlockScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  color: 'color',
+  duration: 'duration',
+  order: 'order',
+  userId: 'userId'
+} as const
+
+export type TimeBlockScalarFieldEnum = (typeof TimeBlockScalarFieldEnum)[keyof typeof TimeBlockScalarFieldEnum]
 
 
 export const PomodoroSessionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isComplited: 'isComplited',
+  isCompleted: 'isCompleted',
   userId: 'userId'
 } as const
 
@@ -117,24 +131,13 @@ export const PomodoroRoundScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  allMinutes: 'allMinutes',
-  completed: 'completed',
-  pomodoroSessionId: 'pomodoroSessionId'
-} as const
-
-export type PomodoroRoundScalarFieldEnum = (typeof PomodoroRoundScalarFieldEnum)[keyof typeof PomodoroRoundScalarFieldEnum]
-
-
-export const TimeblockScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  name: 'name',
-  color: 'color',
+  totalSeconds: 'totalSeconds',
+  isComplete: 'isComplete',
+  PomodoroSessionId: 'PomodoroSessionId',
   userId: 'userId'
 } as const
 
-export type TimeblockScalarFieldEnum = (typeof TimeblockScalarFieldEnum)[keyof typeof TimeblockScalarFieldEnum]
+export type PomodoroRoundScalarFieldEnum = (typeof PomodoroRoundScalarFieldEnum)[keyof typeof PomodoroRoundScalarFieldEnum]
 
 
 export const SortOrder = {

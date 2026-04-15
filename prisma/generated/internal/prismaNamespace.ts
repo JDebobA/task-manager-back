@@ -386,9 +386,9 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Task: 'Task',
+  TimeBlock: 'TimeBlock',
   PomodoroSession: 'PomodoroSession',
-  PomodoroRound: 'PomodoroRound',
-  Timeblock: 'Timeblock'
+  PomodoroRound: 'PomodoroRound'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -404,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "task" | "pomodoroSession" | "pomodoroRound" | "timeblock"
+    modelProps: "user" | "task" | "timeBlock" | "pomodoroSession" | "pomodoroRound"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -556,6 +556,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TimeBlock: {
+      payload: Prisma.$TimeBlockPayload<ExtArgs>
+      fields: Prisma.TimeBlockFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TimeBlockFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TimeBlockFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>
+        }
+        findFirst: {
+          args: Prisma.TimeBlockFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TimeBlockFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>
+        }
+        findMany: {
+          args: Prisma.TimeBlockFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>[]
+        }
+        create: {
+          args: Prisma.TimeBlockCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>
+        }
+        createMany: {
+          args: Prisma.TimeBlockCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TimeBlockCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>[]
+        }
+        delete: {
+          args: Prisma.TimeBlockDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>
+        }
+        update: {
+          args: Prisma.TimeBlockUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>
+        }
+        deleteMany: {
+          args: Prisma.TimeBlockDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TimeBlockUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TimeBlockUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>[]
+        }
+        upsert: {
+          args: Prisma.TimeBlockUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeBlockPayload>
+        }
+        aggregate: {
+          args: Prisma.TimeBlockAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTimeBlock>
+        }
+        groupBy: {
+          args: Prisma.TimeBlockGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TimeBlockGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TimeBlockCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TimeBlockCountAggregateOutputType> | number
+        }
+      }
+    }
     PomodoroSession: {
       payload: Prisma.$PomodoroSessionPayload<ExtArgs>
       fields: Prisma.PomodoroSessionFieldRefs
@@ -704,80 +778,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Timeblock: {
-      payload: Prisma.$TimeblockPayload<ExtArgs>
-      fields: Prisma.TimeblockFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.TimeblockFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.TimeblockFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>
-        }
-        findFirst: {
-          args: Prisma.TimeblockFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.TimeblockFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>
-        }
-        findMany: {
-          args: Prisma.TimeblockFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>[]
-        }
-        create: {
-          args: Prisma.TimeblockCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>
-        }
-        createMany: {
-          args: Prisma.TimeblockCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.TimeblockCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>[]
-        }
-        delete: {
-          args: Prisma.TimeblockDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>
-        }
-        update: {
-          args: Prisma.TimeblockUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>
-        }
-        deleteMany: {
-          args: Prisma.TimeblockDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.TimeblockUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.TimeblockUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>[]
-        }
-        upsert: {
-          args: Prisma.TimeblockUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeblockPayload>
-        }
-        aggregate: {
-          args: Prisma.TimeblockAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateTimeblock>
-        }
-        groupBy: {
-          args: Prisma.TimeblockGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.TimeblockGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.TimeblockCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.TimeblockCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -824,9 +824,9 @@ export const UserScalarFieldEnum = {
   email: 'email',
   name: 'name',
   password: 'password',
+  workInterval: 'workInterval',
   breakInterval: 'breakInterval',
-  intervalsCount: 'intervalsCount',
-  workInterval: 'workInterval'
+  intervalCount: 'intervalCount'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -837,19 +837,33 @@ export const TaskScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   name: 'name',
+  priority: 'priority',
   isCompleted: 'isCompleted',
-  userId: 'userId',
-  priority: 'priority'
+  userId: 'userId'
 } as const
 
 export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const TimeBlockScalarFieldEnum = {
+  id: 'id',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  name: 'name',
+  color: 'color',
+  duration: 'duration',
+  order: 'order',
+  userId: 'userId'
+} as const
+
+export type TimeBlockScalarFieldEnum = (typeof TimeBlockScalarFieldEnum)[keyof typeof TimeBlockScalarFieldEnum]
 
 
 export const PomodoroSessionScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  isComplited: 'isComplited',
+  isCompleted: 'isCompleted',
   userId: 'userId'
 } as const
 
@@ -860,24 +874,13 @@ export const PomodoroRoundScalarFieldEnum = {
   id: 'id',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  allMinutes: 'allMinutes',
-  completed: 'completed',
-  pomodoroSessionId: 'pomodoroSessionId'
-} as const
-
-export type PomodoroRoundScalarFieldEnum = (typeof PomodoroRoundScalarFieldEnum)[keyof typeof PomodoroRoundScalarFieldEnum]
-
-
-export const TimeblockScalarFieldEnum = {
-  id: 'id',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  name: 'name',
-  color: 'color',
+  totalSeconds: 'totalSeconds',
+  isComplete: 'isComplete',
+  PomodoroSessionId: 'PomodoroSessionId',
   userId: 'userId'
 } as const
 
-export type TimeblockScalarFieldEnum = (typeof TimeblockScalarFieldEnum)[keyof typeof TimeblockScalarFieldEnum]
+export type PomodoroRoundScalarFieldEnum = (typeof PomodoroRoundScalarFieldEnum)[keyof typeof PomodoroRoundScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -953,13 +956,6 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
  * Reference to a field of type 'Priority'
  */
 export type EnumPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Priority'>
@@ -970,6 +966,13 @@ export type EnumPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'Priority[]'
  */
 export type ListEnumPriorityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Priority[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -1083,9 +1086,9 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   task?: Prisma.TaskOmit
+  timeBlock?: Prisma.TimeBlockOmit
   pomodoroSession?: Prisma.PomodoroSessionOmit
   pomodoroRound?: Prisma.PomodoroRoundOmit
-  timeblock?: Prisma.TimeblockOmit
 }
 
 /* Types for Logging */
