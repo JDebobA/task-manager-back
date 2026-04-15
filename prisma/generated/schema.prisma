@@ -1,0 +1,71 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+
+//Модель юзера
+model User {
+  id             String            @id @default(uuid())
+  createdAt      DateTime          @default(now()) @map("created_at")
+  updatedAt      DateTime          @updatedAt @map("updated_at")
+  email          String            @unique
+  name           String?
+  password       String
+  breakInterval  Int               @default(5) @map("break_interval")
+  intervalsCount Int               @default(3) @map("interval_count")
+  workInterval   Int               @default(30) @map("work_interval")
+  task           Task[]
+  session        PomodoroSession[]
+  timeBlock      Timeblock[]
+}
+
+//Модель задач
+model Task {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  name        String?
+  isCompleted Boolean  @map("is_completed")
+  userId      String   @map("user_id")
+  user        User     @relation(fields: [userId], references: [id])
+  priority    Priority
+}
+
+enum Priority {
+  low
+  medium
+  high
+}
+
+//Модель сессии
+model PomodoroSession {
+  id          String          @id @default(uuid())
+  createdAt   DateTime        @default(now()) @map("created_at")
+  updatedAt   DateTime        @updatedAt @map("updated_at")
+  isComplited Boolean         @map("is_complited")
+  user        User?           @relation(fields: [userId], references: [id])
+  userId      String?         @map("user_id")
+  rounds      PomodoroRound[]
+}
+
+//Модель Раунда
+model PomodoroRound {
+  id                String          @id @default(uuid())
+  createdAt         DateTime        @default(now()) @map("created_at")
+  updatedAt         DateTime        @updatedAt @map("updated_at")
+  allMinutes        Int             @map("all_minutes")
+  IsCompleted       Boolean
+  pomodoroSessionId String          @map("pomodoro_session_id")
+  pomodoroSession   PomodoroSession @relation(fields: [pomodoroSessionId], references: [id])
+}
+
+//Модель временного блока
+model Timeblock {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  name      String
+  color     String   @default("#a03a3a")
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}

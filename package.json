@@ -37,6 +37,7 @@
 		"class-validator": "^0.15.1",
 		"date-fns": "^4.1.0",
 		"dotenv": "^17.3.1",
+		"passport": "^0.7.0",
 		"passport-jwt": "^4.0.1",
 		"pg": "^8.20.0",
 		"reflect-metadata": "^0.2.2",
