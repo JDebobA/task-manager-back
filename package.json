@@ -20,7 +20,9 @@
 		"test:e2e": "jest --config ./test/jest-e2e.json",
 		"db:push": "prisma db push",
 		"db:studio": "prisma studio",
-		"db:seed": "ts-node src/core/seed/prisma.seed.ts"
+		"db:seed": "ts-node src/core/seed/prisma.seed.ts",
+		"setup:no-docker": "npm install && prisma db push",
+		"start:no-docker": "prisma db push && nest start --watch"
 	},
 	"dependencies": {
 		"@nestjs/common": "^11.0.1",

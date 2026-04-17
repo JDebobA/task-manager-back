@@ -44,6 +44,19 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
+## Run without Docker (school PC, no admin)
+
+1. Create `.env` from `.env.school.example`.
+2. Put your cloud Postgres URL into `DATABASE_URL` (Neon/Supabase/Render).
+3. Run:
+
+```bash
+npm run setup:no-docker
+npm run start:no-docker
+```
+
+Or on Windows, just double-click `run-no-docker.bat`.
+
 ## Run tests
 
 ```bash
