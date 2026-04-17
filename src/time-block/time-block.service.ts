@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, NotFoundException } from '@nestjs/common'
 import { PrismaService } from 'src/prisma/prisma.service'
 
 import { TimeBlockDto } from './dto/time-block.dto'
@@ -19,7 +19,6 @@ export class TimeBlockService {
 	}
 
 	async create(dto: TimeBlockDto, userId: string) {
-		// Убираем undefined поля
 		const data: any = {
 			user: {
 				connect: {
@@ -43,7 +42,18 @@ export class TimeBlockService {
 		timeBlockId: string,
 		userId: string
 	) {
-		// Убираем undefined поля
+		// Сначала проверяем, существует ли блок и принадлежит ли пользователю
+		const existingBlock = await this.prisma.timeBlock.findFirst({
+			where: {
+				id: timeBlockId,
+				userId
+			}
+		})
+
+		if (!existingBlock) {
+			throw new NotFoundException('Time block not found or access denied')
+		}
+
 		const data: any = {}
 
 		if (dto.name !== undefined) data.name = dto.name
@@ -53,7 +63,6 @@ export class TimeBlockService {
 
 		return this.prisma.timeBlock.update({
 			where: {
-				userId,
 				id: timeBlockId
 			},
 			data
@@ -61,10 +70,21 @@ export class TimeBlockService {
 	}
 
 	async delete(timeBlockId: string, userId: string) {
-		return this.prisma.timeBlock.delete({
+		// Сначала проверяем, существует ли блок и принадлежит ли пользователю
+		const existingBlock = await this.prisma.timeBlock.findFirst({
 			where: {
 				id: timeBlockId,
 				userId
+			}
+		})
+
+		if (!existingBlock) {
+			throw new NotFoundException('Time block not found or access denied')
+		}
+
+		return this.prisma.timeBlock.delete({
+			where: {
+				id: timeBlockId
 			}
 		})
 	}
