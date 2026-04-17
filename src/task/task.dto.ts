@@ -1,11 +1,17 @@
 import { Transform } from 'class-transformer'
-import { IsBoolean, IsEnum, IsOptional, IsString } from 'class-validator'
+import {
+	IsBoolean,
+	IsEnum,
+	IsNotEmpty,
+	IsOptional,
+	IsString
+} from 'class-validator'
 import { Priority } from 'prisma/generated/client'
 
 export class TaskDto {
 	@IsString()
-	@IsOptional()
-	name?: string
+	@IsNotEmpty({ message: 'Task name is required' }) // ← Добавлено: name обязательное поле
+	name: string // ← убран IsOptional
 
 	@IsBoolean()
 	@IsOptional()

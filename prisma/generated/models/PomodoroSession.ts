@@ -408,7 +408,6 @@ export type PomodoroSessionCreateOrConnectWithoutUserInput = {
 
 export type PomodoroSessionCreateManyUserInputEnvelope = {
   data: Prisma.PomodoroSessionCreateManyUserInput | Prisma.PomodoroSessionCreateManyUserInput[]
-  skipDuplicates?: boolean
 }
 
 export type PomodoroSessionUpsertWithWhereUniqueWithoutUserInput = {
@@ -1273,7 +1272,6 @@ export type PomodoroSessionCreateManyArgs<ExtArgs extends runtime.Types.Extensio
    * The data used to create many PomodoroSessions.
    */
   data: Prisma.PomodoroSessionCreateManyInput | Prisma.PomodoroSessionCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1292,7 +1290,6 @@ export type PomodoroSessionCreateManyAndReturnArgs<ExtArgs extends runtime.Types
    * The data used to create many PomodoroSessions.
    */
   data: Prisma.PomodoroSessionCreateManyInput | Prisma.PomodoroSessionCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

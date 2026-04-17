@@ -516,7 +516,6 @@ export type PomodoroRoundCreateOrConnectWithoutUserInput = {
 
 export type PomodoroRoundCreateManyUserInputEnvelope = {
   data: Prisma.PomodoroRoundCreateManyUserInput | Prisma.PomodoroRoundCreateManyUserInput[]
-  skipDuplicates?: boolean
 }
 
 export type PomodoroRoundUpsertWithWhereUniqueWithoutUserInput = {
@@ -573,7 +572,6 @@ export type PomodoroRoundCreateOrConnectWithoutPomodoroSessionInput = {
 
 export type PomodoroRoundCreateManyPomodoroSessionInputEnvelope = {
   data: Prisma.PomodoroRoundCreateManyPomodoroSessionInput | Prisma.PomodoroRoundCreateManyPomodoroSessionInput[]
-  skipDuplicates?: boolean
 }
 
 export type PomodoroRoundUpsertWithWhereUniqueWithoutPomodoroSessionInput = {
@@ -1406,7 +1404,6 @@ export type PomodoroRoundCreateManyArgs<ExtArgs extends runtime.Types.Extensions
    * The data used to create many PomodoroRounds.
    */
   data: Prisma.PomodoroRoundCreateManyInput | Prisma.PomodoroRoundCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1425,7 +1422,6 @@ export type PomodoroRoundCreateManyAndReturnArgs<ExtArgs extends runtime.Types.E
    * The data used to create many PomodoroRounds.
    */
   data: Prisma.PomodoroRoundCreateManyInput | Prisma.PomodoroRoundCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

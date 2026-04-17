@@ -510,7 +510,6 @@ export type TimeBlockCreateOrConnectWithoutUserInput = {
 
 export type TimeBlockCreateManyUserInputEnvelope = {
   data: Prisma.TimeBlockCreateManyUserInput | Prisma.TimeBlockCreateManyUserInput[]
-  skipDuplicates?: boolean
 }
 
 export type TimeBlockUpsertWithWhereUniqueWithoutUserInput = {
@@ -1323,7 +1322,6 @@ export type TimeBlockCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * The data used to create many TimeBlocks.
    */
   data: Prisma.TimeBlockCreateManyInput | Prisma.TimeBlockCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1342,7 +1340,6 @@ export type TimeBlockCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * The data used to create many TimeBlocks.
    */
   data: Prisma.TimeBlockCreateManyInput | Prisma.TimeBlockCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

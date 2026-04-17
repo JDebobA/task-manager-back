@@ -4,8 +4,7 @@ import {
 	OnModuleDestroy,
 	OnModuleInit
 } from '@nestjs/common'
-import { PrismaPg } from '@prisma/adapter-pg'
-import { Pool } from 'pg'
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3'
 import { PrismaClient } from 'prisma/generated/client'
 
 @Injectable()
@@ -16,18 +15,14 @@ export class PrismaService
 	private readonly logger = new Logger(PrismaService.name)
 
 	public constructor() {
-		// Создает пул подключений PostgreSQL и передает его Prisma через адаптер.
-		const pool = new Pool({
-			connectionString: process.env.DATABASE_URL
+		// Правильный способ - передать объект с полем url
+		const adapter = new PrismaBetterSqlite3({
+			url: process.env.DATABASE_URL ?? 'file:./dev.db'
 		})
-
-		//@ts-ignore
-		const adapter = new PrismaPg(pool)
-
+		
 		super({ adapter })
 	}
 
-	// При старте модуля подключается к БД и логирует время подключения.
 	public async onModuleInit() {
 		const start = Date.now()
 
@@ -48,7 +43,6 @@ export class PrismaService
 		}
 	}
 
-	// При остановке модуля корректно закрывает соединение с БД.
 	public async onModuleDestroy() {
 		this.logger.log('Отключения от базы данных...')
 
