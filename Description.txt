@@ -1,0 +1,116 @@
+1) Название проекта
+Task Manager (Fullstack): веб-приложение для личной продуктивности с задачами, тайм-блоками, Pomodoro-таймером и настройками пользователя.
+Состоит из двух частей:
+
+task-manager-back — backend API на NestJS + Prisma + PostgreSQL
+task-manager-main — frontend SPA на React + TypeScript + Webpack
+2) Технологии
+Backend (task-manager-back)
+Язык: TypeScript
+Платформа: Node.js
+Фреймворк: NestJS 11
+ORM/DB: Prisma + PostgreSQL
+Auth: JWT (@nestjs/jwt, passport-jwt, @nestjs/passport)
+Хеширование: argon2
+Валидация DTO: class-validator, class-transformer, ValidationPipe
+Конфиг: @nestjs/config, .env
+Документация: Swagger (@nestjs/swagger)
+Дополнительно: date-fns, pg, @prisma/adapter-pg
+Frontend (task-manager-main)
+Язык: TypeScript + JSX
+Фреймворк: React 19
+Сборка/Dev server: Webpack 5 + webpack-dev-server
+HTTP: fetch через общий API-обёртчик
+Хранение локальных данных: localStorage
+Архитектура UI: page-based SPA без react-router (внутренний state переключает страницы)
+3) Структура кода (классы, функции, модули)
+Backend — основные модули
+src/main.ts
+Точка входа: создание Nest-приложения, Swagger, глобальный ValidationPipe, запуск сервера.
+
+src/app.module.ts
+Корневой модуль: подключает AuthModule, UserModule, TaskModule, TimeBlockModule, PomodoroModule, PrismaModule, ConfigModule.
+
+src/prisma/prisma.module.ts, src/prisma/prisma.service.ts
+Глобальный доступ к Prisma Client, подключение/отключение БД в lifecycle-хуках.
+
+src/auth/*
+AuthController, AuthService, JwtStrategy, guard/декораторы (@Auth, @CurrentUser) — всё, что связано с авторизацией и токенами.
+
+src/user/*
+Профиль, обновление данных пользователя, статистика по задачам.
+
+src/task/*
+CRUD задач текущего пользователя.
+
+src/time-block/*
+CRUD тайм-блоков + массовое обновление порядка (updateOrder).
+
+src/pomodoro/*
+Создание/получение дневной сессии Pomodoro, обновление раундов и сессий.
+
+prisma/schema.prisma
+Описание моделей: User, Task, TimeBlock, PomodoroSession, PomodoroRound.
+
+Frontend — основные модули
+src/app/index.tsx
+Рендер App в #root.
+
+src/app/App.tsx
+Главный контейнер приложения: текущая страница, глобальные настройки, синхронизация с API + localStorage.
+
+src/pages/tasks/ui/TasksPage.tsx
+Экран задач (добавить/выполнить/удалить, группировка по приоритету/цвету).
+
+src/features/manage-tasks/model/useTasks.ts
+Ключевая бизнес-логика задач: optimistic updates + local fallback + синхронизация с backend.
+
+src/pages/timeblocks/ui/TimeBlocksPage.tsx
+Экран тайм-блоков: CRUD, сортировка, напоминания*
+
+src/pages/pomodoro/ui/PomodoroPage.tsx
+Локальный таймер Pomodoro (tick каждую секунду, завершение раунда).
+
+src/pages/settings/ui/SettingsPage.tsx
+Изменение настроек (уведомления, длительность помидора).
+
+src/shared/api/*
+API слой (http.ts, tasksApi.ts, timeblocksApi.ts, settingsApi.ts).
+
+src/widgets/layout/ui/MainLayout.tsx, src/widgets/sidebar/ui/*
+Каркас приложения + навигация между страницами.
+
+4) Функционал (что умеет программа)
+Авторизация пользователя (регистрация, логин, логаут, refresh-token flow) на backend*
+Управление профилем пользователя и его настройками.
+Полный CRUD задач*
+Полный CRUD тайм-блоков + изменение порядка.
+Помодоро-сессии по дням с раундами.
+На frontend:
+задачи, помидоро, тайм-блоки и настройки в едином UI;
+локальный fallback в localStorage, если API недоступно;
+уведомления по тайм-блокам (Notification API/alert fallback);
+расчет прогресса по задачам (выполнено/всего/%).
+5) Как работает код (потоки данных)
+Frontend UI action -> вызывает функцию из shared/api/*
+API wrapper (requestJson) -> fetch на API_BASE_URL + path
+Nest Controller -> принимает запрос, валидирует DTO, вызывает Service
+Service -> бизнес-логика + Prisma-запросы
+Prisma -> PostgreSQL
+Ответ -> обратно в frontend state + при необходимости в localStorage
+6) Основные сущности БД (кратко)
+User: email, password, настройки pomodoro, связи на задачи/тайм-блоки/сессии.
+Task: текстовая задача с приоритетом и флагом выполнения.
+TimeBlock: блок времени (название, длительность, порядок).
+PomodoroSession: дневная сессия.
+PomodoroRound: отдельный раунд внутри сессии.
+7) Фрагменты кода (подписи для отчёта)
+Фрагмент: Инициализация backend и Swagger (task-manager-back/src/main.ts)
+Фрагмент: JWT-авторизация и refresh-token cookie (task-manager-back/src/auth/auth.service.ts, auth.controller.ts)
+Фрагмент: Расчет статистики пользователя (task-manager-back/src/user/user.service.ts)
+Фрагмент: CRUD задач (task-manager-back/src/task/task.controller.ts, task.service.ts)
+Фрагмент: Массовая перестановка тайм-блоков транзакцией (task-manager-back/src/time-block/time-block.service.ts)
+Фрагмент: Создание дневной Pomodoro-сессии (task-manager-back/src/pomodoro/pomodoro.service.ts)
+Фрагмент: Точка входа frontend и рендер App (task-manager-main/src/app/index.tsx)
+Фрагмент: Главный state-контейнер приложения (task-manager-main/src/app/App.tsx)
+Фрагмент: Хук управления задачами с синхронизацией API
